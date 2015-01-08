@@ -79,7 +79,7 @@ $(document).ready(function()
 
     });
     $('#text').keydown(function(e) {
-        //They see me tabbin', they hatin'
+        //They see me tabbin', they hatin' 
         if(e.keyCode === 9) {
         var start = this.selectionStart;
         var end = this.selectionEnd;
