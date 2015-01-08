@@ -1,0 +1,133 @@
+ @font-face { font-family: Sosa; src: url('sosa-regular-webfont.ttf'); } 
+
+body, html {
+	margin: 0;
+	background-color: #eeeeee;
+	height: 100%;
+	overflow: hidden;
+}
+
+#container {
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 800px;
+	height: 80%;
+	background-color: #ffffff;
+}
+
+#text {
+	border: none;
+	height: 80%;
+	width: 720px;
+	overflow: auto;
+	resize: none;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	margin-top: 40px;
+	padding: 0px 40px 0px 40px;
+}
+#monster_progressbar {
+	height: 15px;
+    width: 100%;
+	margin-top: 20px;
+}
+#user_progressbar {
+	height: 15px;
+    width: 100%;
+	margin-top: 3px;
+}
+#hp {
+	position: absolute;
+	line-height: 18px;
+	margin: -33px 0 20px 0;
+	width: 100%;
+	text-align: center;
+	font-family: 'Sansita One', cursive;
+}
+
+#monster_progressbar .ui-progressbar-value {
+	-moz-animation: all 1s linear;
+    -webkit-animation: all 1s linear;
+}
+
+#min {
+    font-family: Sosa;
+    font-size: 30px;
+    position: absolute;
+    right: 35px;
+    top: 8px;
+    z-index: 9999;
+    padding: 10px;
+    letter-spacing: 10px;
+}
+
+#max {
+	display: none;
+    font-family: Sosa;
+    font-size: 30px;
+    position: absolute;
+    right: 35px;
+    top: 8px;
+    z-index: 9999;
+    padding: 10px;
+    letter-spacing: 10px;
+}
+
+#min a {
+	color: #000;
+	text-decoration: none;
+	opacity: .6;
+}
+
+#max a {
+	color: #000;
+	text-decoration: none;
+	opacity: .2;
+}
+
+#min a:hover, #max a:hover {
+  	opacity: 1;
+}
+
+#monster_progressbar span, #user_progressbar span {
+	background-color: #eee;
+    display: inline-block;
+    height: 100%;
+    -webkit-transition: all .4s linear;
+			-moz-transition: all .4s linear;
+			-ms-transition: all .4s linear;
+			-o-transition: all .4s linear;
+			transition: all .4s linear;	  
+}
+
+.tooltip-content {
+	font-family: 'Sansita One', cursive;
+	font-size: 16px;
+    opacity: 0;
+    visibility: hidden;     
+    text-align: center;
+    width: 150px;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    margin-left: -76px;                     
+    transition: all .2s ease;                  
+    }
+    
+
+.tooltip:hover .tooltip-content{
+    opacity: 1;
+    visibility: visible;
+    top: 50px;  
+    transition: all .2s ease;                       
+}
+
+#lol {
+	font-family: arial;
+	font-size: 14;
+	position: absolute;
+	top: 150px;
+	left: 50px;
+	width: 200px;
+	height: 100px;
+}
