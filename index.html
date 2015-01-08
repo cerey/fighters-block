@@ -3,19 +3,38 @@
 <head>
   <meta charset="utf-8">
   <title>Fighter's Block!</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/flexslider.css">
   <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Sansita+One' rel='stylesheet' type='text/css'>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="plugins/jquery.nicescroll.min.js"></script>
-  <link rel="stylesheet" href="jquery-ui.css">
-  <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script src="plugins/jquery.flexslider-min.js"></script>
+  <link rel="stylesheet" href="css/powerange.css" />
+  <script src="plugins/powerange.min.js"></script>
   <script src="script.js"></script>
-  <script>
-</script>
+
 </head>
 <body>
   <noscript><h1>You need JavaScript, bruh.</h1></noscript>
+
+  <div id="dialogbox">ë</div>
+  <div id="blackout"></div>
+
+  <div class="monsters"><ul class="slides">
+    <li><a href="#" onclick="clearmonsters(1, 100, 1)">Not a Block<p><img src="img/m1.png"><br>1-100 Words<br>x1 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(101, 500, 2)">Baby Block<p><img src="img/m1.png"><br>101-500 Words<br>x2 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(501, 1000, 3)">Blocksparagus<p><img src="img/m1.png"><br>501-1,000 Words<br>x3 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(1001, 5000, 4)">Sunblocker<p><img src="img/m1.png"><br>1,001-5,000 Words<br>x4 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(5001, 10000, 6)">Blocking A'<p><img src="img/m1.png"><br>5,001-10,000 Words<br>x6 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(10001, 50000, 8)">FoxyBlock<p><img src="img/m1.png"><br>10,001-50,000 Words<br>x8 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(50000, 500000, 10)">BlockZilla<p><img src="img/m1.png"><br>50,000+ Words<br>x10 Exp Multiplier</a></li>
+  </ul></div>
+
+  <div id = "smallcontainer">
+    <input type="text" class="slider"><br><br>
+    <span id="slidercounter">1</span> words <br>x<span id="slidermultiplier"></span> multiplier <br>= <span id="sliderexp">0</span> EXP upon successful completion.<br><div class = "go"><a href="#" onclick="clearbox()">å</a></div>
+  </div>
 
   <div id ="min"><a href="#" data-tooltip="Pause" onclick="pause()">O</a> <a href="#" data-tooltip="User">Ü</a> <a href="#" data-tooltip="Settings">X</a> <a href="#" onclick="minimize()" data-tooltip="Minimize">í</a></div>
   <div id="max"><a href="#" onclick="maximize()">ì</a></div>
@@ -29,11 +48,8 @@
   </div>
 
   <div id="container" class="default-skin demo">
-    <textarea id = "text" name = "textarea" class="default-skin demo" placeholder="Hello, adventurer! Reach your word count goal to defeat the enemy. BoxZilla deals continuous damage to you, so keep typing to heal yourself."></textarea>
+    <textarea id = "text" name = "textarea" class="default-skin demo" placeholder="Hello, adventurer! Reach your word count goal to defeat the enemy, before you run out of HP."></textarea>
   </div>
 
-  <div id="lol">
-    <input id='hpbox' placeholder="monster hp (int plz)"></input>
-  </div>
 </body>
 </html>
