@@ -185,6 +185,8 @@ function clearbox() {
             'display': 'none'
         }); 
     $('#total_monster_hp').html(total_monster_hp);
+    monster_hp = total_monster_hp;
+    $('#monster_hp').html(total_monster_hp);
     updateBars();
 
 }
