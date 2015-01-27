@@ -15,11 +15,12 @@ body a, html a{
 	margin: 0 auto;
 	margin-top: 20px;
 	width: 800px;
-	height: 80%;
+	height: 100%;
 	background-color: #ffffff;
 }
 
 #text {
+	background: none;
 	border: none;
 	height: 80%;
 	width: 720px;
@@ -194,3 +195,13 @@ body a, html a{
 		-o-transition: all .2s linear;
 		transition: all .2s linear;	 
 	}
+
+#settings {
+	display: none;
+	opacity: .7;
+	position: absolute;
+	background-color: #ccc;
+	width: 150px;
+	top: 90px;
+	right: 80px;
+}

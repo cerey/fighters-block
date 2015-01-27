@@ -5,13 +5,15 @@
   <title>Fighter's Block!</title>
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/flexslider.css">
-  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Sansita+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto|Sansita+One|Anonymous+Pro|Merriweather|Indie+Flower|Muli' rel='stylesheet' type='text/css'>
+
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="plugins/jquery.nicescroll.min.js"></script>
   <script src="plugins/jquery.flexslider-min.js"></script>
   <link rel="stylesheet" href="css/powerange.css" />
   <script src="plugins/powerange.min.js"></script>
+  <link rel="stylesheet" href="css/selectordie.css" />
+  <script src="plugins/selectordie.min.js"></script>
   <script src="script.js"></script>
 
 </head>
@@ -23,20 +25,20 @@
 
   <div class="monsters"><ul class="slides">
     <li><a href="#" onclick="clearmonsters(1, 100, 1)">Not a Block<p><img src="img/m1.png"><br>1-100 Words<br>x1 Exp Multiplier</a></li>
-    <li><a href="#" onclick="clearmonsters(101, 500, 2)">Baby Block<p><img src="img/m1.png"><br>101-500 Words<br>x2 Exp Multiplier</a></li>
-    <li><a href="#" onclick="clearmonsters(501, 1000, 3)">Blocksparagus<p><img src="img/m1.png"><br>501-1,000 Words<br>x3 Exp Multiplier</a></li>
-    <li><a href="#" onclick="clearmonsters(1001, 5000, 4)">Sunblocker<p><img src="img/m1.png"><br>1,001-5,000 Words<br>x4 Exp Multiplier</a></li>
-    <li><a href="#" onclick="clearmonsters(5001, 10000, 6)">FoxyBlock<p><img src="img/m1.png"><br>5,001-10,000 Words<br>x6 Exp Multiplier</a></li>
-    <li><a href="#" onclick="clearmonsters(10001, 50000, 8)">Block Lee<p><img src="img/m1.png"><br>10,001-50,000 Words<br>x8 Exp Multiplier</a></li>
-    <li><a href="#" onclick="clearmonsters(50000, 500000, 10)">BlockZilla<p><img src="img/m1.png"><br>50,000+ Words<br>x10 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(101, 500, 1.5)">Baby Block<p><img src="img/m1.png"><br>101-500 Words<br>x1.5 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(501, 1000, 1.7)">Blocksparagus<p><img src="img/m1.png"><br>501-1,000 Words<br>x1.7 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(1001, 5000, 2.2)">Sunblocker<p><img src="img/m1.png"><br>1,001-5,000 Words<br>x2.2 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(5001, 10000, 2.4)">FoxyBlock<p><img src="img/m1.png"><br>5,001-10,000 Words<br>x2.4 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(10001, 50000, 2.9)">Block Lee<p><img src="img/m1.png"><br>10,001-50,000 Words<br>x2.9 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(50000, 500000, 3.1)">BlockZilla<p><img src="img/m1.png"><br>50,000+ Words<br>x3.1 Exp Multiplier</a></li>
   </ul></div>
 
   <div id = "smallcontainer">
     <input type="text" class="slider"><br><br>
-    <span id="slidercounter">1</span> words <br>x<span id="slidermultiplier"></span> multiplier <br>= <span id="sliderexp">0</span> EXP upon successful completion.<br><div class = "go"><a href="#" onclick="clearbox()">å</a></div>
+    <span id="slidercounter">1</span> words <br>x<span id="slidermultiplier"></span> multiplier <br>= <span id="sliderexp">0</span> EXP upon successful completion.<br><div class = "go"><a href="#">ã</a><a href="#" onclick="clearbox()">å</a></div>
   </div>
 
-  <div id ="min"><a href="#" data-tooltip="Pause" onclick="pause()">O</a> <a href="#" data-tooltip="User">Ü</a> <a href="#" data-tooltip="Settings">X</a> <a href="#" onclick="minimize()" data-tooltip="Minimize">í</a></div>
+  <div id ="min"><a href="#" data-tooltip="Pause" onclick="pause()">O</a> <a href="#" data-tooltip="User">Ü</a> <a href="#" data-tooltip="Settings" onclick="showsettings()">X</a> <a href="#" onclick="minimize()" data-tooltip="Minimize">í</a></div>
   <div id="max"><a href="#" onclick="maximize()">ì</a></div>
 
   <div id="monster_progressbar"><span style="width: 100%"></span></div>
@@ -49,6 +51,36 @@
 
   <div id="container" class="default-skin demo">
     <textarea id = "text" name = "textarea" class="default-skin demo" placeholder="Hello, adventurer! Reach your word count goal to defeat the enemy, before you run out of HP."></textarea>
+  </div>
+
+  <div id="settings">
+    <select id="fontselect">
+      <option value="roboto">Roboto</option>
+      <option value="Anonymous Pro">Anonymous Pro</option>
+      <option value="merriweather">Merriweather</option>
+      <option value="indie flower">Indie Flower</option>
+      <option value="muli">Muli</option>
+    </select> 
+    <select id="sizeselect">
+      <option value="12px">Small</option>
+      <option value="16px">Medium</option>
+      <option value="20px">Large</option>
+      <option value="24px">Larger</option>
+      <option value="28px">Huge</option>
+    </select>
+    <select id="themeselect">
+      <option value="1">Light Gray</option>
+      <option value="6">Dark Gray</option>
+      <option value="2">Midnight</option>
+      <option value="3">Bamboo</option>
+      <option value="4">Latte</option>
+      <option value="5">Sea Foam</option>
+      <option value="0">Custom</option>
+    </select> 
+    <select id="widescreen">
+      <option value="narrow">Narrow</option>
+      <option value="wide">Widescreen</option>
+    </select>
   </div>
 
 </body>

@@ -13,8 +13,74 @@ var color4 = "#C1D193";
 var color5 = "#78AE8C";
 var monster_hp_bar = 100;
 var timerInterval = 500;
+var settings = false;
 $(document).ready(function()
 {
+    $('#fontselect').selectOrDie({
+        placeholder: "Font",
+        onChange: function() { 
+            $("#text").css('font-family', $(this).val());
+        }
+    });
+    $('#sizeselect').selectOrDie({
+        placeholder: "Text Size",
+        onChange: function() { 
+            $("#text").css('font-size', $(this).val());
+        }
+    });
+    
+    $('#widescreen').selectOrDie({
+        placeholder: "Paper Display",
+        onChange: function() { 
+            if ($(this).val() == "narrow") {
+                $("#container").css('width', "800px");
+                $("#text").css('width', "720px");
+            } else {
+                $("#container").css('width', "100%");
+                var w = $(document).width() - 80;
+                $("#text").css('width', w + "px");
+            } 
+        }
+    });
+
+    $('#themeselect').selectOrDie({
+        placeholder: "Theme",
+        onChange: function() { 
+            switch ($(this).val())
+            {
+            case "1":
+                $("#container").css('background-color', "#fff");
+                $("body").css('background-color', "#eee");
+                $("#text").css('color', "#000");
+                break;
+            case "2":
+                $("#container").css('background-color', "#1a1334");
+                $("body").css('background-color', "#26294a");
+                $("#text").css('color', "#01545a");
+                break;
+            case "3":
+                $("#container").css('background-color', "#447c69");
+                $("body").css('background-color', "#51574a");
+                $("#text").css('color', "#74c493");
+                break;
+            case "4":
+                $("#container").css('background-color', "#eeeade");
+                $("body").css('background-color', "#d5c6b0");
+                $("#text").css('color', "#4c3f37");
+                break;
+            case "5":
+                $("#container").css('background-color', "#e0ecf4");
+                $("body").css('background-color', "#9ebcda");
+                $("#text").css('color', "#4d004b");
+                break;
+            case "6":
+            $("#container").css('background-color', "#222");
+            $("body").css('background-color', "#555");
+            $("#text").css('color', "#eee");
+            break;
+            }
+        }
+    });
 
     setInterval(function() {
         if (monster_hp > 0 && !paused) {
@@ -60,10 +126,9 @@ $(document).ready(function()
 
     }
 
-    document.getElementById("container").style.height = height;
     $('#text').niceScroll({
         cursorwidth: 10,
-        cursorborder: "8px solid #fff",
+        cursorborder: "8px solid transparent",
         cursorborderradius: "80px",
         cursoropacitymax: .75,
         hidecursordelay: 2500
@@ -81,7 +146,7 @@ $(document).ready(function()
         $('#monster_hp').html(monster_hp);
     }
     $('#user_hp').html(user_hp);
-    $('#text').keydown(function(e) {
+    $('#text').keyup(function(e) {
         //They see me tabbin', they hatin' 
         if(e.keyCode === 9) {
         var start = this.selectionStart;
@@ -94,15 +159,13 @@ $(document).ready(function()
         this.selectionStart = this.selectionEnd = start + 1;
         e.preventDefault();
     }
-        user_hp += 1;
-        if ((user_hp) > 100)
-            user_hp = 100;
-        var matches = this.value.match(/\b/g);
-        wordCounts[this.id] = matches ? matches.length / 2 : 0;
-        var words = 0;
-        $.each(wordCounts, function(k, v) {
-            words += v;
-        });
+        if (!paused) {
+            user_hp += 1;
+            if ((user_hp) > 100)
+                user_hp = 100;    
+        }
+        var matches = this.value.match(/[\u4E00-\u9FFF]|[a-zA-Z0-9]+/g);
+        var words = matches ? matches.length : 0;
         monster_hp = total_monster_hp - words;
         if (monster_hp < 0)
             monster_hp = 0;
@@ -138,6 +201,8 @@ function minimize() {
         $('#text').css({
             'height': "90%"
         });
+
+
 }
 
 function maximize() {
@@ -200,14 +265,27 @@ function clearmonsters(vmin, vmax, multiplier) {
         }); 
     $('#slidercounter').html(vmin);  
     $('#slidermultiplier').html(multiplier);  
-    $('#sliderexp').html(multiplier * vmin); 
+    $('#sliderexp').html(Math.round(multiplier * vmin)); 
     total_monster_hp = vmin;   
     var slidey = document.querySelector('.slider')
       , initChangeInput = new Powerange(slidey, {hideRange: true, min: vmin, max: vmax, start: vmin});
     slidey.onchange = function() {
         var temp = slidey.value;
         $('#slidercounter').html(temp);
-        $('#sliderexp').html(multiplier * temp);
+        $('#sliderexp').html(Math.round(multiplier * temp));
         total_monster_hp = temp;
     };
+}
+
+function showsettings() {
+    if (settings) {
+        $('#settings').css({
+            'display': 'none'
+        });
+    } else {
+        $('#settings').css({
+            'display': 'inline'
+        });
+    }
+    settings = !settings;
 }
