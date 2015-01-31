@@ -396,7 +396,7 @@ function changeWide(wide) {
     if (wide == "narrow") {
         $("#container").css('width', "800px");
         $("#text").css('width', "720px");
-    } else {
+    } else { 
         $("#container").css('width', "100%");
         var w = $(window).width() - 80 + 'px';
         $("#text").css('width', w);
