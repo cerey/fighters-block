@@ -113,7 +113,7 @@ body a, html a{
     text-align: center;
     width: 150px;
     position: absolute;
-    top: 40px;
+    top: 50px;
     left: 50%;
     margin-left: -76px;                     
     transition: all .2s ease;                  
@@ -123,7 +123,7 @@ body a, html a{
 .tooltip:hover .tooltip-content{
     opacity: 1;
     visibility: visible;
-    top: 50px;  
+    top: 60px;  
     transition: all .2s ease;                       
 }
 
@@ -177,7 +177,6 @@ body a, html a{
 
 .go a {
 	font-family: sosa;
-	color: #78AE8C;
 	font-size: 44px;
 	   -webkit-transition: all .2s linear;
 		-moz-transition: all .2s linear;
@@ -187,7 +186,6 @@ body a, html a{
 }
 
 .go a:hover {
-	color: green;
 	font-size: 50px;
 	   -webkit-transition: all .2s linear;
 		-moz-transition: all .2s linear;
@@ -195,6 +193,7 @@ body a, html a{
 		-o-transition: all .2s linear;
 		transition: all .2s linear;	 
 	}
+
 
 #settings {
 	display: none;

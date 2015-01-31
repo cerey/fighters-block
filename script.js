@@ -267,6 +267,15 @@ function clearbox() {
 
 }
 
+function showmonsters () {
+    $('.monsters').css({
+            'display': 'inline'
+        });
+    $('#smallcontainer').css({
+            'z-index': '-1'
+        });
+}
+
 function clearmonsters(vmin, vmax, multiplier) {
     $('.monsters').css({
             'display': 'none'
