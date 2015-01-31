@@ -223,10 +223,10 @@ body a, html a{
 }
 
 #fight {
+	background-image: url('../img/bg2.png');
 	position: absolute;
 	width: 100%;
 	text-align: center;
-    background-image: url('../img/bg1.png');
     background-repeat: no-repeat;
     background-position: center;
 }
