@@ -13,7 +13,7 @@ body a, html a{
 
 #container {
 	margin: 0 auto;
-	margin-top: 20px;
+	margin-top: 3px;
 	width: 800px;
 	height: 100%;
 	background-color: #ffffff;
@@ -22,19 +22,19 @@ body a, html a{
 #text {
 	background: none;
 	border: none;
-	height: 80%;
+	height: 0;
 	width: 720px;
 	overflow: auto;
 	resize: none;
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
-	margin-top: 40px;
+	margin-top: 20px;
 	padding: 0px 40px 0px 40px;
 }
 #monster_progressbar {
 	height: 15px;
     width: 100%;
-	margin-top: 20px;
+	margin-top: 200px;
 }
 #user_progressbar {
 	height: 15px;
@@ -204,4 +204,13 @@ body a, html a{
 	width: 150px;
 	top: 90px;
 	right: 80px;
+}
+
+#fight {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+    background-image: url('../img/bg1.png');
+    background-repeat: no-repeat;
+    background-position: center;
 }

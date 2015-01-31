@@ -1,5 +1,5 @@
-var height = $(window).height() - 30 + "px"; 
-var height_max = $(window).height() + "px"; 
+var bheight = $(window).height() - 270 + "px"; 
+var bheightmax = $(window).height() - 30 + "px"; 
 var paused = false;
 var minimized = false;
 var total_monster_hp = 100;
@@ -16,6 +16,9 @@ var timerInterval = 500;
 var settings = false;
 $(document).ready(function()
 {
+    $('#text').css({
+            'height': bheight
+        });   
     $('#fontselect').selectOrDie({
         placeholder: "Font",
         onChange: function() { 
@@ -190,6 +193,9 @@ function minimize() {
         $('#hp').css({
             'display': 'none'
         });
+        $('#fight').css({
+            'display': 'none'
+        });
         $('#monster_progressbar').css({
             'height': '3px',
             'margin-top' : '-11px'
@@ -199,7 +205,7 @@ function minimize() {
             'margin-top' : '0px'
         });
         $('#text').css({
-            'height': "90%"
+            'height': bheightmax
         });
         if (settings) {
             showsettings();
@@ -217,7 +223,7 @@ function maximize() {
         });
         $('#monster_progressbar').css({
             'height': '15px',
-            'margin-top' : '20px'
+            'margin-top' : '200px'
         });
         $('#user_progressbar').css({
             'height': '15px',
@@ -228,7 +234,10 @@ function maximize() {
         });
 
         $('#text').css({
-            'height': '80%'
+            'height': bheight
+        });
+        $('#fight').css({
+            'display': 'inline',
         });
 }
 
@@ -284,6 +293,7 @@ function showsettings() {
         $('#settings').css({
             'display': 'none'
         });
+
     } else {
         $('#settings').css({
             'display': 'inline'
