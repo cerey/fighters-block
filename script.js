@@ -16,8 +16,24 @@ var timerInterval = 500;
 var settings = false;
 var slidey = null;
 var user = false;
+var date = new Date();
+date.setTime(date.getTime() + (999*24*60*60*1000));
+date = date.toUTCString();
 $(document).ready(function()
 {
+    if (getCookie("font") != null)
+        $("#text").css('font-family', getCookie("font"));
+
+    if (getCookie("size") != null)
+        $("#text").css('font-size', getCookie("size"));
+
+    if (getCookie("wide") != null)
+        changeWide(getCookie("wide"));
+
+    if (getCookie("color") != null)
+        changeColor(getCookie("color"));
+
+
     $('#text').css({
             'height': bheight
         });   
@@ -25,65 +41,27 @@ $(document).ready(function()
         placeholder: "Font",
         onChange: function() { 
             $("#text").css('font-family', $(this).val());
+            document.cookie = "font=" + $(this).val() + "; expires=" + date;
         }
     });
     $('#sizeselect').selectOrDie({
         placeholder: "Text Size",
         onChange: function() { 
             $("#text").css('font-size', $(this).val());
+            document.cookie = "size=" + $(this).val() + "; expires=" + date;
+
         }
     });
     
     $('#widescreen').selectOrDie({
         placeholder: "Display",
-        onChange: function() { 
-            if ($(this).val() == "narrow") {
-                $("#container").css('width', "800px");
-                $("#text").css('width', "720px");
-            } else {
-                $("#container").css('width', "100%");
-                var w = $(document).width() - 80;
-                $("#text").css('width', w + "px");
-            } 
-        }
+        onChange: changeWide($(this).val())
     });
 
     $('#themeselect').selectOrDie({
         placeholder: "Theme",
         onChange: function() { 
-            switch ($(this).val())
-            {
-            case "1":
-                $("#container").css('background-color', "#fff");
-                $("body").css('background-color', "#eee");
-                $("#text").css('color', "#000");
-                break;
-            case "2":
-                $("#container").css('background-color', "#1a1334");
-                $("body").css('background-color', "#26294a");
-                $("#text").css('color', "#01545a");
-                break;
-            case "3":
-                $("#container").css('background-color', "#447c69");
-                $("body").css('background-color', "#51574a");
-                $("#text").css('color', "#74c493");
-                break;
-            case "4":
-                $("#container").css('background-color', "#eeeade");
-                $("body").css('background-color', "#d5c6b0");
-                $("#text").css('color', "#4c3f37");
-                break;
-            case "5":
-                $("#container").css('background-color', "#e0ecf4");
-                $("body").css('background-color', "#9ebcda");
-                $("#text").css('color', "#4d004b");
-                break;
-            case "6":
-            $("#container").css('background-color', "#222");
-            $("body").css('background-color', "#555");
-            $("#text").css('color', "#eee");
-            break;
-            }
+            changeColor($(this).val());
         }
     });
 
@@ -130,20 +108,24 @@ $(document).ready(function()
         $('#user_progressbar span').css('background-color', colorh);
 
     }
+    if (getCookie("words") == null) {
 
-    $('#text').niceScroll({
-        cursorwidth: 10,
-        cursorborder: "8px solid transparent",
-        cursorborderradius: "80px",
-        cursoropacitymax: .75,
-        hidecursordelay: 2500
-    });
+        $('#text').niceScroll({
+            cursorwidth: 10,
+            cursorborder: "8px solid transparent",
+            cursorborderradius: "80px",
+            cursoropacitymax: .75,
+            hidecursordelay: 2500
+        });
 
-    $('.monsters').flexslider({
-        animation: "slide"
-    });
-    $('.monsters').flexslider("pause") //Pause slideshow`
-
+        $('.monsters').flexslider({
+            animation: "slide"
+        });
+        $('.monsters').flexslider("pause") 
+    } else {
+        total_monster_hp = parseInt(getCookie("words"));
+        clearbox();
+    }
 
     if (monster_hp > 0) {
         //todo
@@ -268,7 +250,7 @@ function clearbox() {
     $('#total_monster_hp').html(total_monster_hp);
     monster_hp = total_monster_hp;
     $('#monster_hp').html(total_monster_hp);
-    updateBars();
+    document.cookie = "words=" + total_monster_hp + "; expires=" + date;
 
 }
 
@@ -343,4 +325,64 @@ function showuser() {
         });
     }
     user = !user;
+}
+
+function changeColor(col) {
+    document.cookie = "color=" + col + "; expires=" + date;
+    switch (col)
+    {
+    case "1":
+        $("#container").css('background-color', "#fff");
+        $("body").css('background-color', "#eee");
+        $("#text").css('color', "#000");
+        break;
+    case "2":
+        $("#container").css('background-color', "#1a1334");
+        $("body").css('background-color', "#26294a");
+        $("#text").css('color', "#01545a");
+        break;
+    case "3":
+        $("#container").css('background-color', "#447c69");
+        $("body").css('background-color', "#51574a");
+        $("#text").css('color', "#74c493");
+        break;
+    case "4":
+        $("#container").css('background-color', "#eeeade");
+        $("body").css('background-color', "#d5c6b0");
+        $("#text").css('color', "#4c3f37");
+        break;
+    case "5":
+        $("#container").css('background-color', "#e0ecf4");
+        $("body").css('background-color', "#9ebcda");
+        $("#text").css('color', "#4d004b");
+        break;
+    case "6":
+    $("#container").css('background-color', "#222");
+    $("body").css('background-color', "#555");
+    $("#text").css('color', "#eee");
+    break;
+    }
+}
+
+function changeWide(wide) { 
+    if (wide == "narrow") {
+        $("#container").css('width', "800px");
+        $("#text").css('width', "720px");
+    } else {
+        $("#container").css('width', "100%");
+        var w = $(document).width() - 80;
+        $("#text").css('width', w + "px");
+    } 
+    document.cookie = "wide=" + wide + "; expires=" + date;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return null;
 }
