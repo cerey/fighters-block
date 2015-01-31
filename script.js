@@ -201,7 +201,9 @@ function minimize() {
         $('#text').css({
             'height': "90%"
         });
-
+        if (settings) {
+            showsettings();
+        }
 
 }
 
