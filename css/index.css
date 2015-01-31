@@ -199,6 +199,7 @@ body a, html a{
 
 
 #settings, #user {
+	color: #222;
 	font-family: Chewy;
 	font-size: 24px;
 	line-height: 45px;
@@ -217,6 +218,9 @@ body a, html a{
 		-o-transition: all .2s linear;
 		transition: all .2s linear;	 
 }
+#settings a, #user a {
+	color: #222;
+}
 
 #fight {
 	position: absolute;
@@ -225,4 +229,8 @@ body a, html a{
     background-image: url('../img/bg1.png');
     background-repeat: no-repeat;
     background-position: center;
+}
+
+#fight img {
+	padding: 50px 30px 50px 30px;
 }

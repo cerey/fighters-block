@@ -19,10 +19,18 @@ var date = new Date();
 var monster_attack = 1;
 var monster_speed = 500;
 var interval = null;
+var exp = 0;
 date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
 $(document).ready(function()
 {
+    if (getCookie("user_hp") != null) {
+        user_hp = parseInt(getCookie("user_hp"));
+    }
+
+    if (getCookie("exp") != null)
+        exp = getCookie("exp");
+
     if (getCookie("font") != null)
         $("#text").css('font-family', getCookie("font"));
 
@@ -134,6 +142,9 @@ $(document).ready(function()
         $('#user_progressbar span').css('width', user_hp +'%');
         $('#monster_progressbar span').css('background-color', color);
         $('#user_progressbar span').css('background-color', colorh);
+
+        document.cookie = "user_hp=" + user_hp + "; expires=" + date;
+
 
     }
 
@@ -346,6 +357,7 @@ function showuser() {
         });
 
     } else {
+        $('#exp').html(exp);
         $('#user').css({
             'right': '0px',
             'opacity' : '.8',
@@ -413,4 +425,10 @@ function getCookie(cname) {
         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
     }
     return null;
+}
+
+function newMonster() {
+    document.cookie = "user_hp=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "words=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    location.reload();
 }
