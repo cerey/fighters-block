@@ -5,7 +5,7 @@
   <title>Fighter's Block!</title>
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/flexslider.css">
-  <link href='http://fonts.googleapis.com/css?family=Roboto|Sansita+One|Anonymous+Pro|Merriweather|Indie+Flower|Muli' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto|Chewy|Anonymous+Pro|Merriweather|Indie+Flower|Muli' rel='stylesheet' type='text/css'>
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="plugins/jquery.nicescroll.min.js"></script>
@@ -38,7 +38,7 @@
     <span id="slidercounter">1</span> words <br>x<span id="slidermultiplier"></span> multiplier <br>= <span id="sliderexp">0</span> EXP upon successful completion.<br><div class = "go"><a href="#" onclick="clearbox()" style="color: #28A94C">å</a><a href="#" onclick="showmonsters()" style="color: #A82743">ã</a></div>
   </div>
 
-  <div id ="min"><a href="#" data-tooltip="Pause" onclick="pause()">O</a> <a href="#" data-tooltip="User">Ü</a> <a href="#" data-tooltip="Settings" onclick="showsettings()">X</a> <a href="#" onclick="minimize()" data-tooltip="Minimize">í</a></div>
+  <div id ="min"><a href="#" data-tooltip="Pause" onclick="pause()">O</a> <a href="#" data-tooltip="User" onclick="showuser()">Ü</a> <a href="#" data-tooltip="Settings" onclick="showsettings()">X</a> <a href="#" onclick="minimize()" data-tooltip="Minimize">í</a></div>
   <div id="max"><a href="#" onclick="maximize()">ì</a></div>
   <div id="fight"><img src="img/battle1.gif"><img src="img/battle2.gif"></div>
   <div id="monster_progressbar"><span style="width: 100%"></span></div>
@@ -51,6 +51,11 @@
 
   <div id="container" class="default-skin demo">
     <textarea id = "text" name = "textarea" class="default-skin demo" placeholder="Hello, adventurer! Reach your word count goal to defeat the enemy, before you run out of HP."></textarea>
+  </div>
+
+  <div id="user">
+    <a href="#" onclick="minimize()">DROPBOX</a><br>
+    <a href="#" onclick="minimize()">NEW MONSTER</a>
   </div>
 
   <div id="settings">

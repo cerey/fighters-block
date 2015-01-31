@@ -14,6 +14,8 @@ var color5 = "#78AE8C";
 var monster_hp_bar = 100;
 var timerInterval = 500;
 var settings = false;
+var slidey = null;
+var user = false;
 $(document).ready(function()
 {
     $('#text').css({
@@ -33,7 +35,7 @@ $(document).ready(function()
     });
     
     $('#widescreen').selectOrDie({
-        placeholder: "Paper Display",
+        placeholder: "Display",
         onChange: function() { 
             if ($(this).val() == "narrow") {
                 $("#container").css('width', "800px");
@@ -210,6 +212,9 @@ function minimize() {
         if (settings) {
             showsettings();
         }
+        if (user) {
+            showuser();
+        }
 
 }
 
@@ -223,7 +228,7 @@ function maximize() {
         });
         $('#monster_progressbar').css({
             'height': '15px',
-            'margin-top' : '200px'
+            'margin-top' : '202px'
         });
         $('#user_progressbar').css({
             'height': '15px',
@@ -274,6 +279,7 @@ function showmonsters () {
     $('#smallcontainer').css({
             'z-index': '-1'
         });
+    document.querySelector('.range-bar').remove();
 }
 
 function clearmonsters(vmin, vmax, multiplier) {
@@ -287,7 +293,7 @@ function clearmonsters(vmin, vmax, multiplier) {
     $('#slidermultiplier').html(multiplier);  
     $('#sliderexp').html(Math.round(multiplier * vmin)); 
     total_monster_hp = vmin;   
-    var slidey = document.querySelector('.slider')
+    slidey = document.querySelector('.slider')
       , initChangeInput = new Powerange(slidey, {hideRange: true, min: vmin, max: vmax, start: vmin});
     slidey.onchange = function() {
         var temp = slidey.value;
@@ -298,15 +304,43 @@ function clearmonsters(vmin, vmax, multiplier) {
 }
 
 function showsettings() {
+    if (user) {
+            showuser();
+        }
     if (settings) {
         $('#settings').css({
-            'display': 'none'
+            'right': '-300px',
+            'opacity' : '0',
+            'z-index' : '-1'
         });
 
     } else {
         $('#settings').css({
-            'display': 'inline'
+            'right': '0px',
+            'opacity' : '.8',
+            'z-index' : '5'
         });
     }
     settings = !settings;
+}
+
+function showuser() {
+    if (settings) {
+            showsettings();
+        }
+    if (user) {
+        $('#user').css({
+            'right': '-300px',
+            'opacity' : '0',
+            'z-index' : '-1'
+        });
+
+    } else {
+        $('#user').css({
+            'right': '0px',
+            'opacity' : '.8',
+            'z-index' : '5'
+        });
+    }
+    user = !user;
 }

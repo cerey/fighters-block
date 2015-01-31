@@ -36,25 +36,23 @@
         position: relative;
         line-height: 1;
 
-        width: 150px;
+        width: 200px;
         padding: 15px 10px;
-        background: #ffffff;
-        color: #444444;
-        font-size: 11px;
-        font-weight: 700;
-        text-align: left;
-        font-family: Roboto;
+        color: #222;
+        font-size: 24px;
+        text-align: center;
+        font-family: Chewy;
         text-transform: uppercase;
         outline: 0;
         outline-offset: -2px; /* Opera */
-        cursor: default;
+        cursor: hand;
     }
 
     /* Up/Down arrows */
     .sod_select:before,
     .sod_select:after
         {
-            content: "\25B2";
+            content: "";
             position: absolute;
             right: 10px;
             top: 12px;
@@ -64,7 +62,7 @@
         /* Down arrow */
         .sod_select:after
             {
-                content: "\25BC";
+                content: "";
                 top: auto;
                 bottom: 12px;
             }
@@ -109,7 +107,7 @@
             left: 0;
             display: none;
             height: auto;
-            width: 150px;
+            width: 200px;
             margin: 0 0 0 0;
             background: #ffffff;
             border-top: none;
