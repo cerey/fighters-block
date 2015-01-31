@@ -12,17 +12,25 @@ var color3 = "#FFE5A3";
 var color4 = "#C1D193";
 var color5 = "#78AE8C";
 var monster_hp_bar = 100;
-var timerInterval = 500;
 var settings = false;
 var slidey = null;
 var user = false;
 var date = new Date();
+var monster_attack = 1;
+var monster_speed = 500;
+var interval = null;
 date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
 $(document).ready(function()
 {
     if (getCookie("font") != null)
         $("#text").css('font-family', getCookie("font"));
+
+    if (getCookie("speed") != null) 
+        monster_speed = getCookie("speed");
+
+    if (getCookie("attack") != null)
+        monster_attack = getCookie("attack");
 
     if (getCookie("size") != null)
         $("#text").css('font-size', getCookie("size"));
@@ -36,7 +44,23 @@ $(document).ready(function()
 
     $('#text').css({
             'height': bheight
-        });   
+        }); 
+    $('#speedselect').selectOrDie({
+        placeholder: "Monster Speed",
+        onChange: function() { 
+            clearInterval(interval);
+            monster_speed = $(this).val();
+            refreshInterval();
+            document.cookie = "speed=" + $(this).val() + "; expires=" + date;
+        }
+    }); 
+    $('#attackselect').selectOrDie({
+        placeholder: "Monster Attack",
+        onChange: function() { 
+            monster_attack = $(this).val();
+            document.cookie = "attack=" + $(this).val() + "; expires=" + date;
+        }
+    });     
     $('#fontselect').selectOrDie({
         placeholder: "Font",
         onChange: function() { 
@@ -55,7 +79,9 @@ $(document).ready(function()
     
     $('#widescreen').selectOrDie({
         placeholder: "Display",
-        onChange: changeWide($(this).val())
+        onChange: function() {
+            changeWide($(this).val());
+        }
     });
 
     $('#themeselect').selectOrDie({
@@ -65,15 +91,17 @@ $(document).ready(function()
         }
     });
 
-    setInterval(function() {
-        if (monster_hp > 0 && !paused) {
-            user_hp -= 1;
-            if (user_hp < 0)
-                user_hp = 0;
-            updateBars();
-        }
-    }, timerInterval);
-
+    function refreshInterval() {
+        interval = setInterval(function() {
+            if (monster_hp > 0 && !paused) {
+                user_hp -= monster_attack;
+                if (user_hp < 0)
+                    user_hp = 0;
+                updateBars();
+            }
+        }, monster_speed);
+    }
+    refreshInterval();
     function updateBars() {
         var color;
         if (monster_hp_bar > 80)
@@ -108,7 +136,6 @@ $(document).ready(function()
         $('#user_progressbar span').css('background-color', colorh);
 
     }
-    if (getCookie("words") == null) {
 
         $('#text').niceScroll({
             cursorwidth: 10,
@@ -118,6 +145,7 @@ $(document).ready(function()
             hidecursordelay: 2500
         });
 
+    if (getCookie("words") == null) {
         $('.monsters').flexslider({
             animation: "slide"
         });
@@ -370,8 +398,8 @@ function changeWide(wide) {
         $("#text").css('width', "720px");
     } else {
         $("#container").css('width', "100%");
-        var w = $(document).width() - 80;
-        $("#text").css('width', w + "px");
+        var w = $(window).width() - 80 + 'px';
+        $("#text").css('width', w);
     } 
     document.cookie = "wide=" + wide + "; expires=" + date;
 }

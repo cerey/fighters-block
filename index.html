@@ -16,6 +16,8 @@
   <script src="plugins/selectordie.min.js"></script>
   <script src="script.js"></script>
 
+  <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="m3u0xb2yg59c958"></script>
+
 </head>
 <body>
   <noscript><h1>You need JavaScript, bruh.</h1></noscript>
@@ -54,11 +56,27 @@
   </div>
 
   <div id="user">
-    <a href="#" onclick="minimize()">DROPBOX</a><br>
-    <a href="#" onclick="minimize()">NEW MONSTER</a>
+    <a href="#">DROPBOX</a><br>
+    <a href="#">STATS</a><br>
+    <a href="#">NEW MONSTER</a><br>
+    ...Are coming soon.
   </div>
 
   <div id="settings">
+    <select id="speedselect">
+      <option value="2000">Pathetic</option>
+      <option value="1000">Slow</option>
+      <option value="500">Moderate</option>
+      <option value="250">Speedy</option>
+      <option value="125">Turret Gun</option>
+    </select> 
+    <select id="attackselect">
+      <option value="1">Miniscule</option>
+      <option value="2">Unimpressive</option>
+      <option value="3">Strong</option>
+      <option value="4">Hulk</option>
+      <option value="5">Exterminator</option>
+    </select> 
     <select id="fontselect">
       <option value="roboto">Roboto</option>
       <option value="Anonymous Pro">Anonymous Pro</option>
