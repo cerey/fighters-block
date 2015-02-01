@@ -26,13 +26,13 @@
   <div id="blackout"></div>
 
   <div class="monsters"><ul class="slides">
-    <li><a href="#" onclick="clearmonsters(1, 100, 1)">Not a Block<p><img src="img/m1.png"><br>1-100 Words<br>x1 Exp Multiplier</a></li>
-    <li><a href="#" onclick="clearmonsters(101, 500, 1.5)">Baby Block<p><img src="img/m1.png"><br>101-500 Words<br>x1.5 Exp Multiplier</a></li>
-    <li><a href="#" onclick="clearmonsters(501, 1000, 1.7)">Blocksparagus<p><img src="img/m1.png"><br>501-1,000 Words<br>x1.7 Exp Multiplier</a></li>
-    <li><a href="#" onclick="clearmonsters(1001, 5000, 2.2)">Sunblocker<p><img src="img/m1.png"><br>1,001-5,000 Words<br>x2.2 Exp Multiplier</a></li>
-    <li><a href="#" onclick="clearmonsters(5001, 10000, 2.4)">FoxyBlock<p><img src="img/m1.png"><br>5,001-10,000 Words<br>x2.4 Exp Multiplier</a></li>
-    <li><a href="#" onclick="clearmonsters(10001, 50000, 2.9)">Block Lee<p><img src="img/m1.png"><br>10,001-50,000 Words<br>x2.9 Exp Multiplier</a></li>
-    <li><a href="#" onclick="clearmonsters(50000, 500000, 3.1)">BlockZilla<p><img src="img/m1.png"><br>50,000+ Words<br>x3.1 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(1, 100, 1, 'Not a Block')">Not a Block<p><img src="img/1-1.gif"><br>1-100 Words<br>x1 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(101, 500, 1.5, 'Baby Block')">Baby Block<p><img src="img/m1.png"><br>101-500 Words<br>x1.5 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(501, 1000, 1.7, 'Blocksparagus')">Blocksparagus<p><img src="img/m1.png"><br>501-1,000 Words<br>x1.7 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(1001, 5000, 2.2, 'Sunblocker')">Sunblocker<p><img src="img/m1.png"><br>1,001-5,000 Words<br>x2.2 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(5001, 10000, 2.4, 'FoxyBlock')">FoxyBlock<p><img src="img/m1.png"><br>5,001-10,000 Words<br>x2.4 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(10001, 50000, 2.9, 'Block Lee')">Block Lee<p><img src="img/m1.png"><br>10,001-50,000 Words<br>x2.9 Exp Multiplier</a></li>
+    <li><a href="#" onclick="clearmonsters(50000, 500000, 3.1, 'BlockZilla')">BlockZilla<p><img src="img/m1.png"><br>50,000+ Words<br>x3.1 Exp Multiplier</a></li>
   </ul></div>
 
   <div id = "smallcontainer">
@@ -40,15 +40,15 @@
     <span id="slidercounter">1</span> words <br>x<span id="slidermultiplier"></span> multiplier <br>= <span id="sliderexp">0</span> EXP upon successful completion.<br><div class = "go"><a href="#" onclick="clearbox()" style="color: #28A94C">å</a><a href="#" onclick="showmonsters()" style="color: #A82743">ã</a></div>
   </div>
 
-  <div id ="min"><a href="#" data-tooltip="Pause" onclick="pause()">O</a> <a href="#" data-tooltip="User" onclick="showuser()">Ü</a> <a href="#" data-tooltip="Settings" onclick="showsettings()">X</a> <a href="#" onclick="minimize()" data-tooltip="Minimize">í</a></div>
+  <div id ="min"><a href="#" data-tooltip="Pause" onclick="pause()">O</a> <a href="#" data-tooltip="Player" onclick="showuser()">Ü</a> <a href="#" data-tooltip="Settings" onclick="showsettings()">X</a> <a href="#" onclick="minimize()" data-tooltip="Minimize">í</a></div>
   <div id="max"><a href="#" onclick="maximize()">ì</a></div>
-  <div id="fight"><img src="img/cloak.png"><img src="img/battle2.gif"></div>
+  <div id="fight"><div id="fight_head"></div><div id="fight_body"><img src="img/cloak.png"></div><div id="enemy"><img id = "enemyimg" src="img/1-1.gif"></div></div>
   <div id="monster_progressbar"><span style="width: 100%"></span></div>
   <div id="user_progressbar"><span style="width: 100%"></span></div>
 
   <div id = "hp">
-    BlockZilla: <span id="monster_hp"></span>/<span id="total_monster_hp"></span><br>
-    User: <span id="user_hp"></span>/100
+    <span id="monster_name"></span>: <span id="monster_hp"></span>/<span id="total_monster_hp"></span><br>
+    Fighter: <span id="user_hp"></span>/100
   </div>
 
   <div id="container" class="default-skin demo">
@@ -57,12 +57,11 @@
 
   <div id="user">
     Level 1: <span id="exp"></span> EXP<p>
-    <a href="#">SKIN</a><br>
-    <a href="#">EYES</a><br>
     <a href="#" onclick="newMonster()">NEW MONSTER</a><p>
     Coming Soon:<br>
     <a href="#">SHOP</a><br>
     <a href="#">INVENTORY</a><br>
+    <a href="#">APPEARANCE</a><br>
     <a href="#">STATS</a><br>
   </div>
 
@@ -111,6 +110,6 @@
     <p>Coming Soon:<br>
     <a href="#">DROPBOX</a><br>
   </div>
-
+  <div id="help"><a href="whatis.html" target="_blank">What is Fighter's Block?</a></div>
 </body>
 </html>

@@ -16,10 +16,12 @@ var settings = false;
 var slidey = null;
 var user = false;
 var date = new Date();
+var animating = false;
 var monster_attack = 1;
 var monster_speed = 500;
 var interval = null;
 var exp = 0;
+var monster_name = "";
 date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
 $(document).ready(function()
@@ -28,7 +30,11 @@ $(document).ready(function()
     if (getCookie("user_hp") != null) {
         user_hp = parseInt(getCookie("user_hp"));
     }
+    if (getCookie("monster_name") != null) {
+        monster_name = getCookie("monster_name");
+        //$('#monster_name').html(monster_name);
 
+    }
     if (getCookie("exp") != null)
         exp = getCookie("exp");
 
@@ -103,7 +109,16 @@ $(document).ready(function()
     function refreshInterval() {
         interval = setInterval(function() {
             if (monster_hp > 0 && !paused) {
+                if (!animating) {
+                    animating = true;
+                    $("#enemyimg").attr("src","img/1-2.gif");
+                    setTimeout ( function() {
+                        $("#enemyimg").attr("src","img/1-1.gif");
+                        animating = false;
+                    }, 1000 );
+                }
                 user_hp -= monster_attack;
+                //todo
                 if (user_hp < 0)
                     user_hp = 0;
                 updateBars();
@@ -113,16 +128,31 @@ $(document).ready(function()
     refreshInterval();
     function updateBars() {
         var color;
-        if (monster_hp_bar > 80)
+        if (monster_hp_bar > 80) {
             color = color5;
-        else if (monster_hp_bar > 60)
+            $("#enemy").css('opacity', 1);
+
+        }
+        else if (monster_hp_bar > 60) {
             color = color4;
-        else if (monster_hp_bar > 40)
+            $("#enemy").css('opacity', .8);
+
+        }
+        else if (monster_hp_bar > 40) {
             color = color3;
-        else if (monster_hp_bar > 20)
+            $("#enemy").css('opacity', .6);
+
+        }
+        else if (monster_hp_bar > 20) {
             color = color2;
-        else
+            $("#enemy").css('opacity', .4);
+
+        }
+        else {
             color = color1;
+            $("#enemy").css('opacity', .2);
+
+        }
 
         var colorh;
         if (user_hp > 80)
@@ -281,6 +311,10 @@ function clearbox() {
     $('#dialogbox').css({
             'display': 'none'
         });
+    $('#help').css({
+            'display': 'none',
+            'z-index': '-1'
+        });
     $('.monsters').css({
             'display': 'none'
         });
@@ -288,9 +322,11 @@ function clearbox() {
             'display': 'none'
         }); 
     $('#total_monster_hp').html(total_monster_hp);
+    $('#monster_name').html(monster_name);
     monster_hp = total_monster_hp;
     $('#monster_hp').html(total_monster_hp);
     document.cookie = "words=" + total_monster_hp + "; expires=" + date;
+    document.cookie = "monster_name=" + monster_name + "; expires=" + date;
 
 }
 
@@ -304,7 +340,8 @@ function showmonsters () {
     document.querySelector('.range-bar').remove();
 }
 
-function clearmonsters(vmin, vmax, multiplier) {
+function clearmonsters(vmin, vmax, multiplier, name) {
+    monster_name = name;
     $('.monsters').css({
             'display': 'none'
         });    
@@ -439,3 +476,4 @@ function newMonster() {
     document.cookie = "words=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     location.reload();
 }
+

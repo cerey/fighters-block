@@ -36,6 +36,9 @@ body a, html a{
     width: 100%;
 	margin-top: 202px;
 }
+.slides img {
+	padding: 25px 0 25px 0;
+}
 #user_progressbar {
 	height: 15px;
     width: 100%;
@@ -226,11 +229,32 @@ body a, html a{
 	background-image: url('../img/bg2.png');
 	position: absolute;
 	width: 100%;
+	height: 200px;
 	text-align: center;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-#fight img {
-	padding: 50px 30px 50px 30px;
+#fight_head, #fight_body {
+	padding-right: 200px;
+	margin-top: 50px;
 }
+
+#enemy {
+	padding-left: 200px;
+	margin-top: -100px;
+}
+
+#help {
+	font-family: Roboto;
+	font-size: 20px;
+	z-index: 999;
+	position: absolute;
+	bottom: 50px;
+	width: 100%;
+	text-align: center;
+}
+ #help a:hover {
+ 	cursor: help;
+ 	background-color: #aaa;
+ }
