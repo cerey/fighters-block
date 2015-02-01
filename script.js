@@ -1,5 +1,5 @@
 var bheight = $(window).height() - 270 + "px"; 
-var bheightmax = $(window).height() - 30 + "px"; 
+var bheightmax = $(window).height() - 30 + "px";
 var paused = false;
 var minimized = false;
 var total_monster_hp = 100;
@@ -21,6 +21,7 @@ var monster_attack = 1;
 var monster_speed = 500;
 var interval = null;
 var exp = 0;
+var counter = 0;
 var monster_name = "";
 date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
@@ -219,7 +220,10 @@ $(document).ready(function()
         if (!paused) {
             user_hp += 1;
             if ((user_hp) > 100)
-                user_hp = 100;    
+                user_hp = 100;  
+            $("#animmagic").attr("src","img/set/novice-mage/" + (counter % 10) + ".png");
+            counter++;
+  
         }
         var matches = this.value.match(/[\u4E00-\u9FFF]|[a-zA-Z0-9]+/g);
         var words = matches ? matches.length : 0;
@@ -237,6 +241,7 @@ $(document).ready(function()
  }); 
 
 function minimize() {
+        var bheightmax = $(window).height() - 30 + "px"; 
         minimized = true;
         $('#min').css({
             'display': 'none'
@@ -271,6 +276,7 @@ function minimize() {
 }
 
 function maximize() {
+        var bheight = $(window).height() - 270 + "px"; 
         minimized = false;
         $('#min').css({
             'display': 'inline'

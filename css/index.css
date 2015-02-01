@@ -258,3 +258,8 @@ body a, html a{
  	cursor: help;
  	background-color: #aaa;
  }
+
+ #magic {
+ 	position: relative;
+ 	top: 128px;
+ }
