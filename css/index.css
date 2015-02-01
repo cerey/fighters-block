@@ -246,11 +246,11 @@ body a, html a{
 }
 
 #help {
-	font-family: Roboto;
-	font-size: 20px;
+	font-family: muli;
+	font-size: 18px;
 	z-index: 999;
 	position: absolute;
-	bottom: 50px;
+	bottom: 30px;
 	width: 100%;
 	text-align: center;
 }
