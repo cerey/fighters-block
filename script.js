@@ -23,10 +23,21 @@ var interval = null;
 var exp = 0;
 var counter = 0;
 var monster_name = "";
+var placeholder = "Hello, adventurer! Reach your word count goal to defeat the enemy, before you run out of HP. ";
 date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
 $(document).ready(function()
 {
+    if (typeof localStorage == "undefined") {
+        placeholder = placeholder + "It looks like local storage isn't supported, so please keep a backup of your writing as you go.";
+    } else {
+        placeholder = placeholder + "Your writing will be saved locally as you go, but it would be a good idea to keep a backup anyway.";
+    }
+
+    if (typeof localStorage != "undefined") 
+        $("#text").attr("value", localStorage.text);
+
+    $("#text").attr('placeholder', placeholder);
 
     if (getCookie("user_hp") != null) {
         user_hp = parseInt(getCookie("user_hp"));
@@ -217,6 +228,9 @@ $(document).ready(function()
         this.selectionStart = this.selectionEnd = start + 1;
         e.preventDefault();
     }
+        if (typeof localStorage != "undefined") 
+            localStorage.text = this.value;
+
         if (!paused) {
             user_hp += 1;
             if ((user_hp) > 100)
