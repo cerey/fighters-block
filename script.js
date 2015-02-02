@@ -249,7 +249,7 @@ $(document).ready(function()
         e.preventDefault();
     }
         if (window['localStorage'] !== null)  {
-            localStorage["text"] = this.value;
+            //localStorage["text"] = this.value;
         }
 
         if (!paused && user_hp > 0) {
