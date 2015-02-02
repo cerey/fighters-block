@@ -30,16 +30,18 @@ date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
 $(document).ready(function()
 {
-    localStorage["text"] = 1;
-    if (window['localStorage'] == null) {
-        placeholder = placeholder + "It looks like local storage isn't supported, so please keep a backup of your writing as you go.";
-    } else {
-        placeholder = placeholder + "Your writing will be saved locally as you go, but it would be a good idea to keep a backup anyway.";
-        $("#text").attr("value", localStorage["text"]);
-        //("#text").attr("value", "sup");
-    }        
+    localStorage.setItem('text', 'hi');
+    localStorage.getItem('text');
 
-    $("#text").attr('placeholder', placeholder);
+    //if (window['localStorage'] == null) {
+        //placeholder = placeholder + "It looks like local storage isn't supported, so please keep a backup of your writing as you go.";
+    //} else {
+        //placeholder = placeholder + "Your writing will be saved locally as you go, but it would be a good idea to keep a backup anyway.";
+        //$("#text").attr("value", localStorage["text"]);
+        //("#text").attr("value", "sup");
+    //}        
+
+    //$("#text").attr('placeholder', placeholder);
 
     if (getCookie("user_hp") != null) {
         user_hp = parseInt(getCookie("user_hp"));
