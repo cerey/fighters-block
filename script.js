@@ -20,7 +20,9 @@ var animating = false;
 var monster_attack = 1;
 var monster_speed = 500;
 var interval = null;
+var counter = 0;
 var exp = 0;
+var exp_granted = false;
 var counter = 0;
 var monster_name = "";
 var placeholder = "Hello, adventurer! Reach your word count goal to defeat the enemy, before you run out of HP. ";
@@ -42,13 +44,20 @@ $(document).ready(function()
     if (getCookie("user_hp") != null) {
         user_hp = parseInt(getCookie("user_hp"));
     }
+
+    if (getCookie("exp") == null) {
+        document.cookie = "exp=0;";
+    } 
+
+    if (getCookie("exp_granted") != null && getCookie("exp_granted") == "true") {
+        exp_granted = true;
+    }
+
     if (getCookie("monster_name") != null) {
         monster_name = getCookie("monster_name");
-        //$('#monster_name').html(monster_name);
-
     }
     if (getCookie("exp") != null)
-        exp = getCookie("exp");
+        exp = parseInt(getCookie("exp"));
 
     if (getCookie("font") != null)
         $("#text").css('font-family', getCookie("font"));
@@ -130,9 +139,18 @@ $(document).ready(function()
                     }, 1000 );
                 }
                 user_hp -= monster_attack;
-                //todo
-                if (user_hp < 0)
+                if (user_hp <= 0) {
                     user_hp = 0;
+                    if (!exp_granted) {
+                        exp_granted = true;
+                        document.cookie = "exp_granted=true; expires=" + date;
+                        $("#notifsymbol").html("j");
+                        $("#notifsymbol").css('color', '#E5959E');
+                        $("#exp_temp").html("Out of HP...");
+                        shownotif();
+                    }
+
+                }
                 updateBars();
             }
         }, monster_speed);
@@ -231,7 +249,7 @@ $(document).ready(function()
         if (typeof localStorage != "undefined") 
             localStorage.text = this.value;
 
-        if (!paused) {
+        if (!paused && user_hp > 0) {
             user_hp += 1;
             if ((user_hp) > 100)
                 user_hp = 100;  
@@ -241,9 +259,22 @@ $(document).ready(function()
         }
         var matches = this.value.match(/[\u4E00-\u9FFF]|[a-zA-Z0-9]+/g);
         var words = matches ? matches.length : 0;
-        monster_hp = total_monster_hp - words;
-        if (monster_hp < 0)
+        if (user_hp > 0)
+            monster_hp = total_monster_hp - words;
+        if (monster_hp <= 0) {
             monster_hp = 0;
+            if (!exp_granted ) {
+                exp_granted = true;
+                document.cookie = "exp_granted=true; expires=" + date;
+                var exp_temp = parseInt(getCookie("exp_temp"))
+                document.cookie = "exp=" + (exp + exp_temp);
+                if (exp_temp > 0)
+                    $("#exp_temp").html(+ exp_temp + " EXP!");
+                else
+                    $("#exp_temp").html("Completed!");
+                shownotif();
+            }
+        }
         monster_hp_bar = Math.round(monster_hp / total_monster_hp * 100);
         updateBars();
     }).keyup();
@@ -347,7 +378,9 @@ function clearbox() {
     $('#monster_hp').html(total_monster_hp);
     document.cookie = "words=" + total_monster_hp + "; expires=" + date;
     document.cookie = "monster_name=" + monster_name + "; expires=" + date;
-
+    document.cookie = "exp_granted=false; expires=" + date;
+    exp_granted = false;
+    document.cookie = "exp_temp="+counter+"; expires="+date;
 }
 
 function showmonsters () {
@@ -377,7 +410,8 @@ function clearmonsters(vmin, vmax, multiplier, name) {
     slidey.onchange = function() {
         var temp = slidey.value;
         $('#slidercounter').html(temp);
-        $('#sliderexp').html(Math.round(multiplier * temp));
+        counter = Math.round(multiplier * temp);
+        $('#sliderexp').html(counter);
         total_monster_hp = temp;
     };
 }
@@ -415,7 +449,7 @@ function showuser() {
         });
 
     } else {
-        $('#exp').html(exp);
+        $('#exp').html(getCookie("exp"));
         $('#user').css({
             'right': '0px',
             'opacity' : '.8',
@@ -497,3 +531,15 @@ function newMonster() {
     location.reload();
 }
 
+function shownotif() {
+    $('#expnotif').css({
+        'opacity' : '.6',
+        'left' : '40px'
+    });
+    setTimeout ( function() {
+        $('#expnotif').css({
+            'opacity' : '0',
+            'left' : '-200px'
+        });            
+    }, 2000 );
+}
