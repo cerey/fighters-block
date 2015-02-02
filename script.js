@@ -35,7 +35,7 @@ $(document).ready(function()
     //} else {
         //placeholder = placeholder + "Your writing will be saved locally as you go, but it would be a good idea to keep a backup anyway.";
         //$("#text").attr("value", localStorage.getItem("text"));
-        ("#text").attr("value", "sup");
+        $("#text").attr("value", "sup");
     //}        
 
     //$("#text").attr('placeholder', placeholder);
