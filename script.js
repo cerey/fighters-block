@@ -34,7 +34,7 @@ $(document).ready(function()
             //localStorage.setItem('text', this.value);
             //localStorage.getItem('text');
             //chrome bug???
-        }
+        //}
     if (window['localStorage'] == null) {
         $('#text').val("crying & debugging");
         //placeholder = placeholder + "It looks like local storage isn't supported, so please keep a backup of your writing as you go.";
