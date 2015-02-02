@@ -30,6 +30,7 @@ date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
 $(document).ready(function()
 {
+    localStorage["text"] = "hi";
     if (window['localStorage'] == null) {
         placeholder = placeholder + "It looks like local storage isn't supported, so please keep a backup of your writing as you go.";
     } else {
