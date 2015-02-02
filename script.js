@@ -30,9 +30,6 @@ date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
 $(document).ready(function()
 {
-    localStorage.setItem('text', 'hi');
-    localStorage.getItem('text');
-
     //if (window['localStorage'] == null) {
         //placeholder = placeholder + "It looks like local storage isn't supported, so please keep a backup of your writing as you go.";
     //} else {
@@ -249,7 +246,10 @@ $(document).ready(function()
         e.preventDefault();
     }
         if (window['localStorage'] !== null)  {
-            //localStorage["text"] = this.value;
+            localStorage.setItem('text', this.value);
+            localStorage.getItem('text');
+            //chrome bug???
+
         }
 
         if (!paused && user_hp > 0) {
