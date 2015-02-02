@@ -30,14 +30,13 @@ date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
 $(document).ready(function()
 {
-    if (typeof localStorage == "undefined") {
+    if (window['localStorage'] == null) {
         placeholder = placeholder + "It looks like local storage isn't supported, so please keep a backup of your writing as you go.";
     } else {
         placeholder = placeholder + "Your writing will be saved locally as you go, but it would be a good idea to keep a backup anyway.";
-    }
-
-    if (typeof localStorage != "undefined") 
-        $("#text").attr("value", localStorage.text);
+        $("#text").attr("value", localStorage["text"]);
+        //("#text").attr("value", "sup");
+    }        
 
     $("#text").attr('placeholder', placeholder);
 
@@ -246,8 +245,9 @@ $(document).ready(function()
         this.selectionStart = this.selectionEnd = start + 1;
         e.preventDefault();
     }
-        if (typeof localStorage != "undefined") 
-            localStorage.text = this.value;
+        if (window['localStorage'] !== null)  {
+            localStorage["text"] = this.value;
+        }
 
         if (!paused && user_hp > 0) {
             user_hp += 1;
