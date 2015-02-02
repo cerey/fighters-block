@@ -30,17 +30,10 @@ date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
 $(document).ready(function()
 {
-           // if (window['localStorage'] !== null)  {
-            //localStorage.setItem('text', this.value);
-            //localStorage.getItem('text');
-            //chrome bug???
-        //}
     if (window['localStorage'] == null) {
-        $('#text').val("crying & debugging");
         placeholder = placeholder + "It looks like local storage isn't supported, so please keep a backup of your writing as you go.";
     } else {
         placeholder = placeholder + "Your writing will be saved locally as you go, but it would be a good idea to keep a backup anyway.";
-        //$("#text").attr("value", localStorage.getItem("text"));
         $('#text').val(localStorage.getItem('text'));
     }        
 
