@@ -34,7 +34,7 @@ $(document).ready(function()
         //placeholder = placeholder + "It looks like local storage isn't supported, so please keep a backup of your writing as you go.";
     //} else {
         //placeholder = placeholder + "Your writing will be saved locally as you go, but it would be a good idea to keep a backup anyway.";
-        //$("#text").attr("value", localStorage["text"]);
+        $("#text").attr("value", localStorage.getItem("text"));
         //("#text").attr("value", "sup");
     //}        
 
