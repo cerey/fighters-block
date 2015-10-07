@@ -18,13 +18,35 @@
 </head>
 <body>
   <noscript><h1>You need JavaScript, friend.</h1></noscript>
-
-  <div id="dialogbox">ë</div>
+  <div id="dialogbox"></div>
   <div id="blackout"></div>
-
+<div class="selectbox">
   <div class="monsters">
-    <a href="#" onclick="selectMonster('hi')"><img src="img/1-1.gif"></a>
+    <a href="#" onclick="selectFighter(1)"><img src="img/preview/av1.png"></a> 
+    <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
+    <br><span id="fightername"></span><br><span id="fighterdesc"></span>
   </div>
+
+  <div class="monsters second">
+    <a href="#" onclick="selectMonster(1)"><img src="img/preview/m1.png"></a> 
+    <a href="#" onclick="selectMonster(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectMonster(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectMonster(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectMonster(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectMonster(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectMonster(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectMonster(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectMonster(0)"><img src="img/preview/0.png"></a>
+    <br><span id="monstername"></span><br><span id="monsterdesc"></span>
+  </div>
+</div>
 
   <div id = "smallcontainer">
     <input type="text" class="slider"><br><br>
@@ -101,7 +123,6 @@
     <p>Coming Soon:<br>
     <a href="#">DROPBOX</a><br>
   </div>
-  <div id="help"><a href="whatis/whatis.html" target="_blank">What is Fighter's Block?</a></div>
   <div id="expnotif"><span id = "notifsymbol" style="font-family: Sosa; font-size: 40px; color: #78AE8C;">e</span><br><span id="exp_temp"></span></div>
 </body>
 </html>

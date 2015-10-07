@@ -216,10 +216,7 @@ $(document).ready(function()
         });
 
     if (getCookie("words") == null) {
-        $('.monsters').flexslider({
-            animation: "slide"
-        });
-        $('.monsters').flexslider("pause") 
+
     } else {
         total_monster_hp = parseInt(getCookie("words"));
         clearbox();
@@ -407,7 +404,7 @@ function clearmonsters(fighter, monster, words, multiplier) {
     $('#sliderexp').html(Math.round(multiplier * vmin)); 
     total_monster_hp = words;   
     counter = Math.round(multiplier * words);
-    };
+    
 }
 
 function showsettings() {
@@ -538,7 +535,30 @@ function shownotif() {
     }, 2000 );
 }
 
-function selectMonster(name) {
-    monster = name
-    $("#monsterdesc").html("name");
+function selectMonster(num) {
+    switch(num)
+    {
+        case 0:
+            monster = "?";
+            $("#monstername").html(monster);
+            $("#monsterdesc").html("This monster has yet to be discovered. Try fighting more aggressive blocks to catch its eye.");
+            break;
+        case 1:
+            monster = "Not-A-Block";
+            $("#monstername").html(monster);
+            $("#monsterdesc").html("A native of the Blocky Woods, this oblong has been ostracized all its life for its strange appearance.");
+    }
+}
+
+function selectFighter(num) {
+    switch(num)
+    {
+        case 0:
+            $("#fightername").html("?");
+            $("#fighterdesc").html("This fighter is MIA. Level up other fighters to draw their attention.");
+            break;
+        case 1:
+            $("#fightername").html("Red");
+            $("#fighterdesc").html("A mage from Somewhereshire; rumors say she's trying to hunt a certain carnivore prowling these parts.");
+    }
 }

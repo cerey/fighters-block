@@ -150,20 +150,26 @@ body a, html a{
 }
 
 .monsters {
-	font-family: 'Chewy', cursive;
-	line-height: 35px;
-	font-size: 32px;
-	position: absolute;
-	z-index: 12;
-	margin-top: 150px;
+	font-family: 'Merriweather';
+	font-size: 18px;
 	width: 350px;
 	height: 310px;
-	left: 50%;
-	margin-left:-175px;
 	text-align: center;
 }
+.selectbox {
+	position: absolute;
+	z-index: 12;
+	margin-top: 80px;
+	margin-left: -375px;
+	width: 750px;
+	left: 50%;
+}
+.second {
+	margin-left: 400px;
+	margin-top: -310px;
+}
 
-.monsters img {
+.selectbox img {
 	margin-top: 10px;
 }
 
@@ -284,4 +290,8 @@ body a, html a{
 		-ms-transition: all .2s linear;
 		-o-transition: all .2s linear;
 		transition: all .2s linear;	 
+}
+#monstername, #fightername {
+	font-size: 32px;
+	font-family: Chewy;
 }
