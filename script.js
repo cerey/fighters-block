@@ -394,7 +394,7 @@ function showmonsters () {
     document.querySelector('.range-bar').remove();
 }
 
-function clearmonsters(vmin, vmax, multiplier, name) {
+function clearmonsters(fighter, monster, words, multiplier) {
     monster_name = name;
     $('.monsters').css({
             'display': 'none'
@@ -405,15 +405,8 @@ function clearmonsters(vmin, vmax, multiplier, name) {
     $('#slidercounter').html(vmin);  
     $('#slidermultiplier').html(multiplier);  
     $('#sliderexp').html(Math.round(multiplier * vmin)); 
-    total_monster_hp = vmin;   
-    slidey = document.querySelector('.slider')
-      , initChangeInput = new Powerange(slidey, {hideRange: true, min: vmin, max: vmax, start: vmin});
-    slidey.onchange = function() {
-        var temp = slidey.value;
-        $('#slidercounter').html(temp);
-        counter = Math.round(multiplier * temp);
-        $('#sliderexp').html(counter);
-        total_monster_hp = temp;
+    total_monster_hp = words;   
+    counter = Math.round(multiplier * words);
     };
 }
 
