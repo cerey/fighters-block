@@ -537,3 +537,8 @@ function shownotif() {
         });            
     }, 2000 );
 }
+
+function selectMonster(name) {
+    monster = name
+    $("#monsterdesc").html("name");
+}
