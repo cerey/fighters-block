@@ -160,13 +160,42 @@ body a, html a{
 	position: absolute;
 	z-index: 12;
 	margin-top: 80px;
-	margin-left: -375px;
-	width: 750px;
+	margin-left: -400px;
+	width: 800px;
 	left: 50%;
 }
 .second {
-	margin-left: 400px;
+	margin-left: 450px;
 	margin-top: -310px;
+}
+.fight {
+	font-family: 'Chewy', cursive;
+	font-size: 35px;
+	padding: 10px;
+	margin-left: 345px;
+	margin-top: -169px;
+}
+.words {
+	font-family: 'Merriweather';
+	font-size: 18px;
+	margin-left: 100px;
+	margin-top: 275px;
+}
+
+.words a {
+	color: red;
+	font-family: 'Chewy';
+	font-size: 28px;
+}
+
+input[type=text] {
+	font-family: 'Merriweather';
+	width: 100px;
+	font-size: 20px;
+	text-align: right;
+	background: transparent;
+	border: none;
+	border-bottom: 2px dashed #cccccc;
 }
 
 .selectbox img {

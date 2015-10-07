@@ -31,7 +31,7 @@
     <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
     <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
     <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
-    <br><span id="fightername"></span><br><span id="fighterdesc"></span>
+    <br><span id="fightername">Red</span><br><span id="fighterdesc">A mage from Somewhereshire; rumors say she's trying to hunt a certain carnivore prowling these parts.</span>
   </div>
 
   <div class="monsters second">
@@ -44,14 +44,12 @@
     <a href="#" onclick="selectMonster(0)"><img src="img/preview/0.png"></a>
     <a href="#" onclick="selectMonster(0)"><img src="img/preview/0.png"></a>
     <a href="#" onclick="selectMonster(0)"><img src="img/preview/0.png"></a>
-    <br><span id="monstername"></span><br><span id="monsterdesc"></span>
+    <br><span id="monstername">Not-A-Block</span><br><span id="monsterdesc">A native of the Blocky Woods, this oblong has been ostracized all its life for its strange appearance.</span>
   </div>
+  <div class="fight">Versus</div>
+  <div class="words">Reach <input type="text" id="num" pattern="[0-9]+" value="100" required> words before the monster knocks you out. <a href="#" onclick="clearmonsters()">Fight!</a></div>
 </div>
 
-  <div id = "smallcontainer">
-    <input type="text" class="slider"><br><br>
-    <span id="slidercounter">1</span> words <br>x<span id="slidermultiplier"></span> multiplier <br>= <span id="sliderexp">0</span> EXP upon successful completion.<br><div class = "go"><a href="#" onclick="clearbox()" style="color: #28A94C">å</a><a href="#" onclick="showmonsters()" style="color: #A82743">ã</a></div>
-  </div>
 
   <div id ="min"><a href="#" data-tooltip="Pause" onclick="pause()">O</a> <a href="#" data-tooltip="Player" onclick="showuser()">Ü</a> <a href="#" data-tooltip="Settings" onclick="showsettings()">X</a> <a href="#" onclick="minimize()" data-tooltip="Minimize">í</a></div>
   <div id="max"><a href="#" onclick="maximize()">ì</a></div>

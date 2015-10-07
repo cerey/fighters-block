@@ -24,7 +24,7 @@ var counter = 0;
 var exp = 0;
 var exp_granted = false;
 var counter = 0;
-var monster_name = "";
+var monster_name = "Not-A-Block";
 var placeholder = "Hello, adventurer! Reach your word count goal to defeat the enemy, before you run out of HP. ";
 date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
@@ -255,7 +255,7 @@ $(document).ready(function()
             counter++;
   
         }
-        var matches = this.value.match(/[\u4E00-\u9FFF]|[a-zA-Z0-9]+/g);
+        var matches = this.value.match(/[\u4e00-\u9fa5]|[a-zA-Z0-9]+/g);
         var words = matches ? matches.length : 0;
         if (user_hp > 0)
             monster_hp = total_monster_hp - words;
@@ -364,7 +364,7 @@ function clearbox() {
             'display': 'none',
             'z-index': '-1'
         });
-    $('.monsters').css({
+    $('.selectbox').css({
             'display': 'none'
         });
     $('#smallcontainer').css({
@@ -381,29 +381,17 @@ function clearbox() {
     document.cookie = "exp_temp="+counter+"; expires="+date;
 }
 
-function showmonsters () {
-    $('.monsters').css({
-            'display': 'inline'
-        });
-    $('#smallcontainer').css({
-            'z-index': '-1'
-        });
-    document.querySelector('.range-bar').remove();
-}
 
-function clearmonsters(fighter, monster, words, multiplier) {
-    monster_name = name;
-    $('.monsters').css({
+function clearmonsters() {
+    $('.selectbox').css({
             'display': 'none'
         });    
     $('#smallcontainer').css({
             'z-index': '13'
         }); 
-    $('#slidercounter').html(vmin);  
-    $('#slidermultiplier').html(multiplier);  
-    $('#sliderexp').html(Math.round(multiplier * vmin)); 
-    total_monster_hp = words;   
-    counter = Math.round(multiplier * words);
+    total_monster_hp = document.getElementById('num').value;   
+    counter =  total_monster_hp;
+    clearbox();
     
 }
 
@@ -539,13 +527,13 @@ function selectMonster(num) {
     switch(num)
     {
         case 0:
-            monster = "?";
-            $("#monstername").html(monster);
+            monster_name = "?";
+            $("#monstername").html(monster_name);
             $("#monsterdesc").html("This monster has yet to be discovered. Try fighting more aggressive blocks to catch its eye.");
             break;
         case 1:
-            monster = "Not-A-Block";
-            $("#monstername").html(monster);
+            monster_name = "Not-A-Block";
+            $("#monstername").html(monster_name);
             $("#monsterdesc").html("A native of the Blocky Woods, this oblong has been ostracized all its life for its strange appearance.");
     }
 }
