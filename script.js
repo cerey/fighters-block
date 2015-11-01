@@ -25,6 +25,7 @@ var exp = 0;
 var exp_granted = false;
 var counter = 0;
 var monster_name = "Not-A-Block";
+var exp_red = 0;
 var placeholder = "Hello, adventurer! Reach your word count goal to defeat the enemy, before you run out of HP. ";
 date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
@@ -43,8 +44,8 @@ $(document).ready(function()
         user_hp = parseInt(getCookie("user_hp"));
     }
 
-    if (getCookie("exp") == null) {
-        document.cookie = "exp=0;";
+    if (getCookie("exp_red") == null) {
+        document.cookie = "exp_red=0;";
     } 
 
     if (getCookie("exp_granted") != null && getCookie("exp_granted") == "true") {
@@ -54,8 +55,8 @@ $(document).ready(function()
     if (getCookie("monster_name") != null) {
         monster_name = getCookie("monster_name");
     }
-    if (getCookie("exp") != null)
-        exp = parseInt(getCookie("exp"));
+    if (getCookie("exp_red") != null)
+        exp_red = parseInt(getCookie("exp_red"));
 
     if (getCookie("font") != null)
         $("#text").css('font-family', getCookie("font"));
@@ -203,6 +204,8 @@ $(document).ready(function()
         $('#user_progressbar span').css('background-color', colorh);
 
         document.cookie = "user_hp=" + user_hp + "; expires=" + date;
+        selectFighter(1);
+        pause = true;
 
 
     }
@@ -270,6 +273,8 @@ $(document).ready(function()
                     $("#exp_temp").html(+ exp_temp + " EXP!");
                 else
                     $("#exp_temp").html("Completed!");
+                    exp_red += total_monster_hp;
+                    document.cookie = "exp_red=" + exp_red + "; expires=" + date;
                 shownotif();
             }
         }
@@ -392,6 +397,7 @@ function clearmonsters() {
     total_monster_hp = document.getElementById('num').value;   
     counter =  total_monster_hp;
     clearbox();
+    paused = false;
     
 }
 
@@ -428,7 +434,8 @@ function showuser() {
         });
 
     } else {
-        $('#exp').html(getCookie("exp"));
+        $('#exp').html(getCookie("exp_red"));
+        $('#level').html(expToLevel(getCookie("exp_red")));
         $('#user').css({
             'right': '0px',
             'opacity' : '.8',
@@ -546,7 +553,15 @@ function selectFighter(num) {
             $("#fighterdesc").html("This fighter is MIA. Level up other fighters to draw their attention.");
             break;
         case 1:
-            $("#fightername").html("Red");
+            $("#fightername").html("Red (Level " + expToLevel(exp_red)+ ")");
             $("#fighterdesc").html("A mage from Somewhereshire; rumors say she's trying to hunt a certain carnivore prowling these parts.");
     }
+}
+
+function addExp(fighter, num) {
+
+}
+
+function expToLevel(num) {
+    return Math.floor(num/150) + 1;
 }
