@@ -22,7 +22,7 @@ var monster_speed = 500;
 var interval = null;
 var counter = 0;
 var exp = 0;
-var exp_granted = false;
+var exp_granted;
 var counter = 0;
 var monster_name = "Not-A-Block";
 var exp_red = 0;
@@ -50,6 +50,8 @@ $(document).ready(function()
 
     if (getCookie("exp_granted") != null && getCookie("exp_granted") == "true") {
         exp_granted = true;
+    } else {
+        exp_granted = false;
     }
 
     if (getCookie("monster_name") != null) {
@@ -273,7 +275,7 @@ $(document).ready(function()
                     $("#exp_temp").html(+ exp_temp + " EXP!");
                 else
                     $("#exp_temp").html("Completed!");
-                    exp_red += total_monster_hp;
+                    exp_red = parseInt(exp_red) + parseInt(total_monster_hp);
                     document.cookie = "exp_red=" + exp_red + "; expires=" + date;
                 shownotif();
             }
