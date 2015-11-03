@@ -190,12 +190,17 @@ body a, html a{
 
 input[type=text] {
 	font-family: 'Merriweather';
+	color:#aaaaaa;
 	width: 100px;
 	font-size: 20px;
-	text-align: right;
+	text-align: center;
 	background: transparent;
 	border: none;
-	border-bottom: 2px dashed #cccccc;
+	border-bottom: 2px dashed red;
+}
+input[type=text]:valid {
+	color: #333333;
+	border-bottom: 2px dashed #555555;
 }
 
 .selectbox img {
