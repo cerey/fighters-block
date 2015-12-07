@@ -26,11 +26,16 @@ var exp_granted;
 var counter = 0;
 var monster_name = "Not-A-Block";
 var exp_red = 0;
+var exp_quin = -1; 
 var placeholder = "Hello, adventurer! Reach your word count goal to defeat the enemy, before you run out of HP. ";
 date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
+var current_fighter = "red";
 $(document).ready(function()
 {
+    $('.tooly').tooltipster({
+         theme: 'tooltipster-shadow'
+         });
     if (window['localStorage'] == null) {
         placeholder = placeholder + "It looks like local storage isn't supported, so please keep a backup of your writing as you go.";
     } else {
@@ -44,9 +49,22 @@ $(document).ready(function()
         user_hp = parseInt(getCookie("user_hp"));
     }
 
+    if (getCookie("current_fighter") == null) {
+    } else {
+        current_fighter= getCookie("current_fighter");
+    }
+
     if (getCookie("exp_red") == null) {
         document.cookie = "exp_red=0;";
-    } 
+    }  else {
+         exp_red = parseInt(getCookie("exp_red"));
+    }
+
+    if (getCookie("exp_quin") == null) {
+        document.cookie = "exp_quin=-1;"; 
+    } else {
+        exp_quin = parseInt(getCookie("exp_quin"));
+    }
 
     if (getCookie("exp_granted") != null && getCookie("exp_granted") == "true") {
         exp_granted = true;
@@ -57,8 +75,7 @@ $(document).ready(function()
     if (getCookie("monster_name") != null) {
         monster_name = getCookie("monster_name");
     }
-    if (getCookie("exp_red") != null)
-        exp_red = parseInt(getCookie("exp_red"));
+
 
     if (getCookie("font") != null)
         $("#text").css('font-family', getCookie("font"));
@@ -78,10 +95,11 @@ $(document).ready(function()
     if (getCookie("color") != null)
         changeColor(getCookie("color"));
 
-
+    pause = true;
     $('#text').css({
             'height': bheight
         }); 
+
     $('#speedselect').selectOrDie({
         placeholder: "Monster Speed",
         onChange: function() { 
@@ -206,10 +224,6 @@ $(document).ready(function()
         $('#user_progressbar span').css('background-color', colorh);
 
         document.cookie = "user_hp=" + user_hp + "; expires=" + date;
-        selectFighter(1);
-        pause = true;
-
-
     }
 
         $('#text').niceScroll({
@@ -221,7 +235,7 @@ $(document).ready(function()
         });
 
     if (getCookie("words") == null) {
-
+        selectFighter(1);
     } else {
         total_monster_hp = parseInt(getCookie("words"));
         clearbox();
@@ -233,7 +247,7 @@ $(document).ready(function()
         $('#monster_hp').html(monster_hp);
     }
     $('#user_hp').html(user_hp);
-    $('#text').keyup(function(e) {
+    $("body").on('keydown', '#text', function(e) { 
         //They see me tabbin', they hatin' 
         if(e.keyCode === 9) {
         var start = this.selectionStart;
@@ -246,6 +260,8 @@ $(document).ready(function()
         this.selectionStart = this.selectionEnd = start + 1;
         e.preventDefault();
     }
+
+
         if (window['localStorage'] !== null)  {
             localStorage.setItem('text', this.value);
             localStorage.getItem('text');
@@ -256,7 +272,7 @@ $(document).ready(function()
             user_hp += 1;
             if ((user_hp) > 100)
                 user_hp = 100;  
-            $("#animmagic").attr("src","img/set/novice-mage/" + (counter % 10) + ".png");
+            $("#animmagic").attr("src","img/set/"+current_fighter+"/" + (counter % 10) + ".png");
             counter++;
   
         }
@@ -275,8 +291,24 @@ $(document).ready(function()
                     $("#exp_temp").html(+ exp_temp + " EXP!");
                 else
                     $("#exp_temp").html("Completed!");
+                //add exp for new fighters
+                var current_exp = 1;
+                if (current_fighter == "quin") {
+                    exp_quin = parseInt(exp_quin) + parseInt(total_monster_hp);
+                    document.cookie = "exp_quin=" + exp_quin + "; expires=" + date;
+                    current_exp = exp_quin;
+                } else {
                     exp_red = parseInt(exp_red) + parseInt(total_monster_hp);
                     document.cookie = "exp_red=" + exp_red + "; expires=" + date;
+                    current_exp = exp_red;
+                }
+
+                //check if unlocked new fighters
+                if (expToLevel (current_exp) >= 11 && exp_quin < 0)
+                {
+                    exp_quin = 1;
+                    document.cookie = "exp_quin=1; expires=" + date;
+                }
                 shownotif();
             }
         }
@@ -354,16 +386,18 @@ function maximize() {
         });
 }
 
-function pause() {
+function pausey() {
     if (paused) {
         paused = false;
+        $('#pausebutton').html("O");
     }
     else {
         paused = true;
+        $('#pausebutton').html("›");
     }
 }
 
-function clearbox() {
+function clearbox() {//this is the one that runs every time page is refreshed
     $('#dialogbox').css({
             'display': 'none'
         });
@@ -384,12 +418,12 @@ function clearbox() {
     document.cookie = "words=" + total_monster_hp + "; expires=" + date;
     document.cookie = "monster_name=" + monster_name + "; expires=" + date;
     document.cookie = "exp_granted=false; expires=" + date;
-    exp_granted = false;
     document.cookie = "exp_temp="+counter+"; expires="+date;
+    checkFighter();
 }
 
 
-function clearmonsters() {
+function clearmonsters() { //this is the one that runs only once per monster
     $('.selectbox').css({
             'display': 'none'
         });    
@@ -398,10 +432,22 @@ function clearmonsters() {
         }); 
     total_monster_hp = document.getElementById('num').value;   
     counter =  total_monster_hp;
-    clearbox();
+    document.cookie = "current_fighter=" + current_fighter+ "; expires=" + date;
     paused = false;
-    
+    exp_granted = false;
+    user_hp = 100;
+    clearbox();
 }
+   
+
+function checkFighter() {
+     if(current_fighter === "quin") { //do animations for different fighters...
+       $('#avatar').attr('src', 'img/set/quin.gif');       
+    }
+
+}
+    
+
 
 function showsettings() {
     if (user) {
@@ -436,8 +482,15 @@ function showuser() {
         });
 
     } else {
-        $('#exp').html(getCookie("exp_red"));
-        $('#level').html(expToLevel(getCookie("exp_red")));
+        //todo probably put this all in 1 method
+        if (current_fighter=="quin") {
+            $('#exp').html(getCookie("exp_quin"));
+            $('#level').html(expToLevel(getCookie("exp_quin")));
+        } else {
+            $('#exp').html(getCookie("exp_red"));
+            $('#level').html(expToLevel(getCookie("exp_red")));        
+        }
+
         $('#user').css({
             'right': '0px',
             'opacity' : '.8',
@@ -538,7 +591,7 @@ function selectMonster(num) {
         case 0:
             monster_name = "?";
             $("#monstername").html(monster_name);
-            $("#monsterdesc").html("This monster has yet to be discovered. Try fighting more aggressive blocks to catch its eye.");
+            $("#monsterdesc").html("This monster has yet to be discovered. Keep an eye out for newcomers in development.");
             break;
         case 1:
             monster_name = "Not-A-Block";
@@ -552,11 +605,24 @@ function selectFighter(num) {
     {
         case 0:
             $("#fightername").html("?");
-            $("#fighterdesc").html("This fighter is MIA. Level up other fighters to draw their attention.");
+            $("#fighterdesc").html("This fighter is MIA. Keep an eye out for newcomers in development.");
             break;
         case 1:
             $("#fightername").html("Red (Level " + expToLevel(exp_red)+ ")");
             $("#fighterdesc").html("A mage from Somewhereshire; rumors say she's trying to hunt a certain carnivore prowling these parts.");
+            current_fighter = "red";
+            break;
+        case 2:
+            if (exp_quin > 0) {
+                $("#fightername").html("Quin (Level " + expToLevel(exp_quin)+ ")");
+                $("#fighterdesc").html("A scribe returning from the great NaNoWriMo Festival, famous for being an ambidextrous dual-wielder.");
+                current_fighter = "quin";
+            }   else {
+                $("#fightername").html("Quin (Locked)");
+                $("#fighterdesc").html("A scribe returning from the great NaNoWriMo Festival. Reach level 11 and catch his eye.");
+            }     
+            break;
+
     }
 }
 
@@ -565,5 +631,6 @@ function addExp(fighter, num) {
 }
 
 function expToLevel(num) {
-    return Math.floor(num/150) + 1;
+     return Math.floor((Math.sqrt(633+128*num)-11)/37) + 1;
+    //return Math.floor(num/150) + 1;
 }

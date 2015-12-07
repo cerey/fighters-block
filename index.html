@@ -11,10 +11,11 @@
   <script src="plugins/jquery.nicescroll.min.js"></script>
   <link rel="stylesheet" href="css/selectordie.css" />
   <script src="plugins/selectordie.min.js"></script>
+  <script type="text/javascript" src="plugins/jquery.tooltipster.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/tooltipster.css" />
+  <link rel="stylesheet" type="text/css" href="css/tooltipster-shadow.css" />
+  <script src="text-loader.js"></script>
   <script src="script.js"></script>
-
-  <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="m3u0xb2yg59c958"></script>
-
 </head>
 <body>
   <noscript><h1>You need JavaScript, friend.</h1></noscript>
@@ -23,7 +24,7 @@
 <div class="selectbox">
   <div class="monsters">
     <a href="#" onclick="selectFighter(1)"><img src="img/preview/av1.png"></a> 
-    <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
+    <a href="#" onclick="selectFighter(2)"><img src="img/preview/av2.png"></a>
     <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
     <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
     <a href="#" onclick="selectFighter(0)"><img src="img/preview/0.png"></a>
@@ -47,13 +48,19 @@
     <br><span id="monstername">Not-A-Block</span><br><span id="monsterdesc">A native of the Blocky Woods, this oblong has been ostracized all its life for its strange appearance.</span>
   </div>
   <div class="fight">Versus</div>
-  <div class="words">Reach <input type="text" id="num" pattern="[0-9]+" value="<goal>" required> words before the monster knocks you out. <a href="#" onclick="clearmonsters()">Fight!</a><p></div><div style="text-align:center; font-size: 30px; opacity: .5; margin-top: -15px;"><a href="http://cerey.github.io/fighters-block/credits.html">♥</a></div>
+  <div class="words">Reach <input type="text" id="num" pattern="[0-9]+" value="<goal>" onClick="this.select();" required> words before the monster knocks you out. <a href="#" onclick="clearmonsters()">Fight!</a><p></div>
+
+  <div style="text-align:center; font-size: 30px; opacity: .5; margin-top: -15px; font-family: sosa">
+    <a href="https://twitter.com/boymeetstorpedo" class="tooly" title="Come say hi on Twitter!" target = "_blank">t</a> 
+    <a id="dl"  href="#" class="tooly" title="See your latest work." onclick="dl()">é</a> 
+    <a href="https://www.paypal.me/fightersblock" class="tooly" title="Buy me a cup of tea? :)" target = "_blank">c</a> 
+    <a href="http://cerey.github.io/fighters-block/credits.html" class="tooly" title="Credits and Help" target = "_blank">Y</a></div>
 </div>
 
 
-  <div id ="min"><a href="#" data-tooltip="Pause" onclick="pause()">O</a> <a href="#" data-tooltip="Player" onclick="showuser()">Ü</a> <a href="#" data-tooltip="Settings" onclick="showsettings()">X</a> <a href="#" onclick="minimize()" data-tooltip="Minimize">í</a></div>
+  <div id ="min"><a href="#" data-tooltip="Pause" onclick="pausey()"><span id="pausebutton">O</span></a> <a href="#" data-tooltip="Player" onclick="showuser()">Ü</a> <a href="#" data-tooltip="Settings" onclick="showsettings()">X</a> <a href="#" onclick="minimize()" data-tooltip="Minimize">í</a></div>
   <div id="max"><a href="#" onclick="maximize()">ì</a></div>
-  <div id="fight"><div id="magic"><img id = "animmagic" src="img/set/novice-mage/1.png"></div><div id="fight_body"><img id="avatar" src="img/set/novice-mage.gif"></div><div id="enemy"><img id = "enemyimg" src="img/1-1.gif"></div></div>
+  <div id="fight"><div id="magic"><img id = "animmagic" src="img/set/red/9.png"></div><div id="fight_body"><img id="avatar" src="img/set/novice-mage.gif"></div><div id="enemy"><img id = "enemyimg" src="img/1-1.gif"></div></div>
   <div id="monster_progressbar"><span style="width: 100%"></span></div>
   <div id="user_progressbar"><span style="width: 100%"></span></div>
 
@@ -113,7 +120,6 @@
       <option value="wide">Widescreen</option>
     </select>
     <p>
-    <a href="http://cerey.github.io/fighters-block/credits.html" target = "_blank">CREDITS</a><br>
   </div>
   <div id="expnotif"><span id = "notifsymbol" style="font-family: Sosa; font-size: 40px; color: #78AE8C;">e</span><br><span id="exp_temp"></span></div>
 </body>
