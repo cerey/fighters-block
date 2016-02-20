@@ -389,11 +389,11 @@ function maximize() {
 function pausey() {
     if (paused) {
         paused = false;
-        $('#pausebutton').html("O");
+        $('.pausebutton').html("O");
     }
     else {
         paused = true;
-        $('#pausebutton').html("›");
+        $('.pausebutton').html("›");
     }
 }
 
