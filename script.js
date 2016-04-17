@@ -180,40 +180,40 @@ $(document).ready(function()
         if (monster_hp_bar > 80) {
             color = color5;
             $("#enemy").css('opacity', 1);
-
         }
         else if (monster_hp_bar > 60) {
             color = color4;
             $("#enemy").css('opacity', .8);
-
         }
         else if (monster_hp_bar > 40) {
             color = color3;
             $("#enemy").css('opacity', .6);
-
         }
         else if (monster_hp_bar > 20) {
             color = color2;
             $("#enemy").css('opacity', .4);
-
         }
         else {
             color = color1;
             $("#enemy").css('opacity', .2);
-
         }
 
         var colorh;
-        if (user_hp > 80)
-            colorh = color5;
-        else if (user_hp > 60)
-            colorh = color4;
-        else if (user_hp > 40)
-            colorh = color3;
-        else if (user_hp > 20)
-            colorh = color2;
-        else
+        if (user_hp > 80) {
+            jQuery.favicon('img/favicon5.png');
+            colorh = color5; }
+        else if (user_hp > 60) {
+            jQuery.favicon('img/favicon4.png');
+            colorh = color4; }
+        else if (user_hp > 40) {
+            jQuery.favicon('img/favicon3.png');
+            colorh = color3; }
+        else if (user_hp > 20) {
+             jQuery.favicon('img/favicon2.png');
+            colorh = color2;}
+        else {
             colorh = color1;
+            jQuery.favicon('img/favicon1.png'); }
 
         $('#monster_hp').html(monster_hp);
         $('#user_hp').html(user_hp);
