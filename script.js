@@ -26,7 +26,8 @@ var exp_granted;
 var counter = 0;
 var monster_name = "Not-A-Block";
 var exp_red = 0;
-var exp_quin = -1; 
+var exp_quin = -1;
+var exp_karen = 0;  
 var placeholder = "Hello, adventurer! Reach your word count goal to defeat the enemy, before you run out of HP. ";
 date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
@@ -64,6 +65,12 @@ $(document).ready(function()
         document.cookie = "exp_quin=-1;"; 
     } else {
         exp_quin = parseInt(getCookie("exp_quin"));
+    }
+
+    if (getCookie("exp_karen") == null) {
+        document.cookie = "exp_karen=0;"; 
+    } else {
+        exp_karen = parseInt(getCookie("exp_karen"));
     }
 
     if (getCookie("exp_granted") != null && getCookie("exp_granted") == "true") {
@@ -297,6 +304,10 @@ $(document).ready(function()
                     exp_quin = parseInt(exp_quin) + parseInt(total_monster_hp);
                     document.cookie = "exp_quin=" + exp_quin + "; expires=" + date;
                     current_exp = exp_quin;
+                } else if (current_fighter == "karen") {
+                    exp_karen = parseInt(exp_karen) + parseInt(total_monster_hp);
+                    document.cookie = "exp_karen=" + exp_karen + "; expires=" + date;
+                    current_exp = exp_karen;
                 } else {
                     exp_red = parseInt(exp_red) + parseInt(total_monster_hp);
                     document.cookie = "exp_red=" + exp_red + "; expires=" + date;
@@ -441,8 +452,10 @@ function clearmonsters() { //this is the one that runs only once per monster
    
 
 function checkFighter() {
-     if(current_fighter === "quin") { //do animations for different fighters...
+     if(current_fighter == "quin") { //do animations for different fighters...
        $('#avatar').attr('src', 'img/set/quin.gif');       
+    } else if (current_fighter == "karen") {
+    $('#avatar').attr('src', 'img/set/karen.gif');  
     }
 
 }
@@ -486,6 +499,9 @@ function showuser() {
         if (current_fighter=="quin") {
             $('#exp').html(getCookie("exp_quin"));
             $('#level').html(expToLevel(getCookie("exp_quin")));
+        } else if (current_fighter=="karen") {
+            $('#exp').html(getCookie("exp_karen"));
+            $('#level').html(expToLevel(getCookie("exp_karen")));
         } else {
             $('#exp').html(getCookie("exp_red"));
             $('#level').html(expToLevel(getCookie("exp_red")));        
@@ -621,6 +637,11 @@ function selectFighter(num) {
                 $("#fightername").html("Quin (Locked)");
                 $("#fighterdesc").html("A scribe returning from the great NaNoWriMo Festival. Reach level 11 and catch his eye.");
             }     
+            break;
+        case 3:
+            $("#fightername").html("Karen (Level " + expToLevel(exp_karen)+ ")");
+            $("#fighterdesc").html("Nearfield's premier bookkeeper, noodle connoisseur, and dragon slayer. Eternally beautiful.");
+            current_fighter = "karen";
             break;
 
     }
