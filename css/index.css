@@ -329,3 +329,7 @@ input[type=text]:valid {
 	font-size: 32px;
 	font-family: Chewy;
 }
+
+.locked {
+	cursor: default;
+}

@@ -102,7 +102,7 @@ $(document).ready(function()
     if (getCookie("color") != null)
         changeColor(getCookie("color"));
 
-    pause = true;
+    paused = true;
     $('#text').css({
             'height': bheight
         }); 
@@ -254,7 +254,7 @@ $(document).ready(function()
         $('#monster_hp').html(monster_hp);
     }
     $('#user_hp').html(user_hp);
-    $("body").on('keydown', '#text', function(e) { 
+    $("body").on('keypress', '#text', function(e) { 
         //They see me tabbin', they hatin' 
         if(e.keyCode === 9) {
         var start = this.selectionStart;
