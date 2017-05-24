@@ -102,7 +102,7 @@ $(document).ready(function()
     if (getCookie("color") != null)
         changeColor(getCookie("color"));
 
-    pause = true;
+    paused = true;
     $('#text').css({
             'height': bheight
         }); 
@@ -283,7 +283,7 @@ $(document).ready(function()
             counter++;
   
         }
-        var matches = this.value.match(/[\u4e00-\u9fa5]|[a-zA-Z0-9]+/g);
+        var matches = this.value.match(/[\u4e00-\u9fa5]|\S+/g);
         var words = matches ? matches.length : 0;
         if (user_hp > 0)
             monster_hp = total_monster_hp - words;
