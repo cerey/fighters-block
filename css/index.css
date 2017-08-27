@@ -1,7 +1,7 @@
  @font-face { font-family: Sosa; src: url('sosa-regular-webfont.ttf'); } 
 
 body, html {
-	overflow: hidden;
+	overflow-x: hidden;
 	margin: 0;
 	background-color: #eeeeee;
 	height: 100%;
@@ -9,6 +9,10 @@ body, html {
 body a, html a{
 	color: #000;
 	text-decoration: none;
+}
+
+body {
+	overflow: hidden;
 }
 
 #container {
