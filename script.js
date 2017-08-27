@@ -522,37 +522,37 @@ function changeColor(col) {
     {
     case "1":
         $("#container").css('background-color', "#fff");
-        $("body").css('background-color', "#eee");
+        $("html, body").css('background-color', "#eee");
         $("#text").css('color', "#000");
         $("#fight").css('background-image', 'url(\'img/bg2.png\')');
         break;
     case "2":
         $("#container").css('background-color', "#1a1334");
-        $("body").css('background-color', "#26294a");
+        $("html, body").css('background-color', "#26294a");
         $("#text").css('color', "#999ca7");
         $("#fight").css('background-image', 'url(\'img/bg6.png\')');
         break;
     case "3":
         $("#container").css('background-color', "#5a8a81");
-        $("body").css('background-color', "#51574a");
+        $("html, body").css('background-color', "#51574a");
         $("#text").css('color', "#ccf2ff");
         $("#fight").css('background-image', 'url(\'img/bg3.png\')');
         break;
     case "4":
         $("#container").css('background-color', "#eeeade");
-        $("body").css('background-color', "#d5c6b0");
+        $("html, body").css('background-color', "#d5c6b0");
         $("#text").css('color', "#4c3f37");
         $("#fight").css('background-image', 'url(\'img/bg5.png\')');
         break;
     case "5":
         $("#container").css('background-color', "#e0ecf4");
-        $("body").css('background-color', "#9ebcda");
+        $("html, body").css('background-color', "#9ebcda");
         $("#text").css('color', "#4d004b");
         $("#fight").css('background-image', 'url(\'img/bg1.png\')');
         break;
     case "6":
     $("#container").css('background-color', "#222");
-    $("body").css('background-color', "#333");
+    $("html, body").css('background-color', "#333");
     $("#text").css('color', "#eee");
     $("#fight").css('background-image', 'url(\'img/bg4.png\')');
     break;
