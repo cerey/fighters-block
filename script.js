@@ -582,6 +582,11 @@ function getCookie(cname) {
     return null;
 }
 
+function clearAndNew() {
+    $('#text').val("");
+    localStorage.setItem('text', "");
+    newMonster();
+}
 function newMonster() {
     document.cookie = "user_hp=100; expires=" + date;
     document.cookie = "words=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
