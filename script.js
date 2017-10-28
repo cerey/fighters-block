@@ -28,7 +28,7 @@ var monster_name = "Not-A-Block";
 var exp_red = 0;
 var exp_quin = -1;
 var exp_karen = 0;  
-var placeholder = "Hello, adventurer! Reach your word count goal to defeat the enemy, before you run out of HP. ";
+var placeholder = "Hello, adventurer! Reach your word count goal to defeat the enemy, before you run out of HP. \n\nBe sure to check out the upper right corner for menu options, including customization and minimized mode to hide animations.";
 date.setTime(date.getTime() + (999*24*60*60*1000));
 date = date.toUTCString();
 var current_fighter = "red";
@@ -38,9 +38,9 @@ $(document).ready(function()
          theme: 'tooltipster-shadow'
          });
     if (window['localStorage'] == null) {
-        placeholder = placeholder + "It looks like local storage isn't supported, so please keep a backup of your writing as you go.";
+        placeholder = placeholder + "\n\nIt looks like local storage isn't supported, so please keep a backup of your writing as you go.";
     } else {
-        placeholder = placeholder + "Your writing will be saved locally as you go, but it would be a good idea to keep a backup anyway.";
+        placeholder = placeholder + "\n\nYour writing will be saved locally as you go, but it would be a good idea to keep a backup anyway.";
         $('#text').val(localStorage.getItem('text'));
     }        
 
@@ -404,7 +404,7 @@ function pausey() {
     }
     else {
         paused = true;
-        $('.pausebutton').html("›");
+        $('.pausebutton').html("S");
     }
 }
 
