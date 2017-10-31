@@ -551,11 +551,24 @@ function changeColor(col) {
         $("#fight").css('background-image', 'url(\'img/bg1.png\')');
         break;
     case "6":
-    $("#container").css('background-color', "#222");
-    $("html, body").css('background-color', "#333");
-    $("#text").css('color', "#eee");
-    $("#fight").css('background-image', 'url(\'img/bg4.png\')');
-    break;
+        $("#container").css('background-color', "#222");
+        $("html, body").css('background-color', "#333");
+        $("#text").css('color', "#eee");
+        $("#fight").css('background-image', 'url(\'img/bg4.png\')');
+        break;
+    case "7":
+        $("#container").css('background-color', "#000");
+        $("html, body").css('background-color', "#1A1717");
+        $("#text").css('color', "#3CFF00");
+        $("#fight").css('background-image', 'url(\'img/hacked.png\')');
+        break;
+    
+    case "8":
+        $("#container").css('background-color', "#5E3E67");
+        $("html, body").css('background-color', "#90748A");
+        $("#text").css('color', "#FFC759");
+        $("#fight").css('background-image', 'url(\'img/spooked.png\')');
+        break;
     }
 }
 

@@ -72,10 +72,11 @@ body {
     z-index: 9;
     padding: 10px;
     letter-spacing: 10px;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 #max {
-	display: none;
+    display: none;
     font-family: Sosa;
     font-size: 30px;
     position: absolute;
@@ -84,6 +85,8 @@ body {
     z-index: 9999;
     padding: 10px;
     letter-spacing: 10px;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+
 }
 
 #min a {
