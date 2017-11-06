@@ -435,13 +435,17 @@ function clearbox() {//this is the one that runs every time page is refreshed
 
 
 function clearmonsters() { //this is the one that runs only once per monster
+    var num = document.getElementById('num').value;
+    if(isNaN(num)){
+        return;
+    }
     $('.selectbox').css({
             'display': 'none'
         });    
     $('#smallcontainer').css({
             'z-index': '13'
         }); 
-    total_monster_hp = document.getElementById('num').value;   
+    total_monster_hp = num;   
     counter =  total_monster_hp;
     document.cookie = "current_fighter=" + current_fighter+ "; expires=" + date;
     paused = false;
